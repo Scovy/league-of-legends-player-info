@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export default function SummonerCard(props){
 
 
@@ -8,6 +10,9 @@ console.log(profileIcon)
         <div>
             <p>{props.summonerName}</p>
             <p>{props.summonerLevel}</p>
+            <p>{props.lpAmount}</p>
+            <p>{props.tier +" "+ props.rank}</p>
+            <p>Wins {props.wins} Losses {props.losses}</p>
             <img src={profileIcon}></img>
         </div>
     )
