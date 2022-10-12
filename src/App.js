@@ -5,7 +5,7 @@ import SummonerCard from './components/SummonerCard';
 import MatchHistory from './components/MatchHistory';
 import { Button, TextField } from '@mui/material'
 function App() {
-  const API_KEY = "RGAPI-01090c65-45e6-4b41-91c7-9c28356feb11"
+  const API_KEY = "RGAPI-0bb7e954-18fd-4a20-a588-8130f6dc22b6"
   const API_ROUTE = "https://eun1.api.riotgames.com"
 
   const [playerName, setPlayerName] = useState("")
