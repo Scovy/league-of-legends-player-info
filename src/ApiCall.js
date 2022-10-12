@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState } from "react";
 export default function ApiCall(){
 
-    const API_KEY = "RGAPI-27f017e4-f515-4019-83b9-569489c735ec"
+    const API_KEY = "RGAPI-ea3eb129-69c1-4d5f-946b-06d97270ba3d"
     const API_ROUTE = "https://eun1.api.riotgames.com"
 
     const [playerName, setPlayerName] = useState("")
