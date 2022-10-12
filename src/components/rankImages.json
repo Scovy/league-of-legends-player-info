@@ -1,0 +1,11 @@
+{
+    "IRON":"./ranked-emblems/Emblem_Iron.png",
+    "BRONZE":"./ranked-emblems/Emblem_Bronze.png",
+    "SILVER":"./ranked-emblems/Emblem_Silver.png",
+    "GOLD":"./ranked-emblems/Emblem_Gold.png",
+    "PLATINUM":"./ranked-emblems/Emblem_Platinum.png",
+    "DIAMOND":"./ranked-emblems/Emblem_Diamond.png",
+    "MASTER":"./ranked-emblems/Emblem_Master.png",
+    "GRANDMASTER":"./ranked-emblems/Emblem_Grandmaster.png",
+    "CHALLANGER":"./ranked-emblems/Challanger.png"
+}
