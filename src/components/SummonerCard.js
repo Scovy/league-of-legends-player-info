@@ -1,7 +1,8 @@
 import * as React from 'react';
 import rankImages from './rankImages.json'
 import {Card, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material'
-import { positions } from '@mui/system';
+import { makeStyles } from '@mui/styles';
+import { borderColor } from '@mui/system';
 export default function SummonerCard(props){
 
 
@@ -11,55 +12,62 @@ const profileIcon = "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profile
 let tier = props.tier
 let rankIcon = rankImages[tier]
 
+const useStyles = makeStyles({
+  cardStyle: {
+    backgroundColor:"#1E5F74",
+    borderRadius:50,
+    margin:"auto"
+  },
+  containerStyle:{
+    top:50,
+    left:50,
+    
+    background:'#133B5C',
+    color:'white',
+    borderRadius:50,
+    borderStyle: 'solid',
+    borderWidth: 1
+  },
+  tier:{
+    paddingLeft:5,
+    justifyContent:'center',
+    lineHeight:5,
+    textAlign:'left',
+    color:'white',
+  }
+
+})
+const classes = useStyles()
 
     return(
+      <Grid container sx={{maxWidth:500}} backgroundColor="#251B37" borderRadius={50} className={classes.containerStyle} alignItems='center'>
 
-        <Card sx={{ maxWidth: 600 } } justify="center">
-        <CardMedia
-          component="img"
-          height="300"
-          width="300"
-          image={profileIcon}
-          alt="green iguana"
-        />
-        <CardContent >
-          <Typography gutterBottom variant="h5" component="div" align="center">
-            {props.summonerInfo.name}
+        <Grid item xs="auto">
+          
+          <CardMedia
+          image={rankIcon}
+          sx={{width:100, height:100}}
+          className={classes.cardStyle}           /*Rank Image*/
+          />
+        </Grid>
+        <Grid item sx={4} className={classes.tier}>
+          <Typography variant='h5' fontWeight={500} >
+              GOLD 4 
           </Typography>
-          <Typography gutterBottom variant="h6" component='div' align='center'>Player Solo Queue Statistics</Typography>
-
-          <Grid container direction='row'>
-          <Grid container spacing='2' direction="row"
-          justifyContent="left"
-          alignItems="left">
-            
-            <Grid item >
-              <CardMedia
-              sx={{ width: 128, height: 128 }}
-              image={rankIcon}
-              >              </CardMedia>
-            </Grid>
-            </Grid>
-            <Grid container direction='column' justifyContent='right' alignItems="right">
-              <Grid item>
-                {props.tier} {props.rank}  {props.leaguePoints} LP
-                
-            </Grid>
-            <Grid item>
-            <Grid item>
-              Losses:{props.losses} | Wins:{props.wins}
-              
-            </Grid>
-            </Grid>
-           
-            </Grid>
+          <Typography variant='h6'>45Lp</Typography>
+        </Grid>
+        <Grid item sx={6} textAlign='right' flex='1' paddingRight={5} >
+          <Typography variant='h6'>
+            156W 152P
+          </Typography>
+          <Typography variant='h6'>
+            Win ratio 51%
+          </Typography>
+        </Grid>
 
 
-            </Grid>
+        
+      </Grid>
 
-
-
-        </CardContent>
-      </Card>
     )
 }
