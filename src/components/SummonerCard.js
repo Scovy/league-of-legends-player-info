@@ -19,9 +19,6 @@ const useStyles = makeStyles({
     margin:"auto"
   },
   containerStyle:{
-    top:50,
-    left:50,
-    
     background:'#133B5C',
     color:'white',
     borderRadius:50,
@@ -33,7 +30,7 @@ const useStyles = makeStyles({
     justifyContent:'center',
     lineHeight:5,
     textAlign:'left',
-    color:'white',
+    color:'white'
   }
 
 })
