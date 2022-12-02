@@ -1,3 +1,20 @@
 html{
-    background-color: #1D2D50;
+}
+.container{
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    background-color: #011627;
+    align-content: center;
+    justify-items: center;
+}
+.searchBar{
+    padding-bottom: 0px;
+    
+}
+.emoteImg{
+    margin-top:0px;
+    justify-content: center;
+    align-content: center;
+
 }
