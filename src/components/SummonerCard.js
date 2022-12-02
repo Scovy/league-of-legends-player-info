@@ -1,8 +1,9 @@
 import * as React from 'react';
 import rankImages from './rankImages.json'
-import {Card, CardActions, CardContent, CardMedia, Button, Typography, Grid} from '@mui/material'
+import {Card, CardActions, CardContent, CardMedia, Button, Typography, Grid, TextField, Container, Box} from '@mui/material'
 import { makeStyles } from '@mui/styles';
 import { borderColor } from '@mui/system';
+import styles from './/styles/SummonerCard.css';
 export default function SummonerCard(props){
 
 
@@ -15,59 +16,32 @@ let rankIcon = rankImages[tier]
 console.log(rankIcon)
 
 
-const useStyles = makeStyles({
-  cardStyle: {
-    backgroundColor:"#1E5F74",
-    borderRadius:50,
-    margin:"auto"
-  },
-  containerStyle:{
-    background:'#251B32',
-    color:'white',
-    borderRadius:50,
-    borderStyle: 'solid',
-    borderWidth: 1
-  },
-  tier:{
-    paddingLeft:5,
-    justifyContent:'center',
-    lineHeight:5,
-    textAlign:'left',
-    color:'white'
-  }
 
-})
-const classes = useStyles()
 
     return(
-      <Grid container sx={{maxWidth:500}} backgroundColor="#251B32" borderRadius={50} className={classes.containerStyle} alignItems='center'>
+      <Container className="container" fixed maxWidth='md' minWidth='xs'>
 
-        <Grid item xs="auto">
-          
-          <CardMedia
-          image={rankIcon}
-          sx={{width:100, height:100}}
-          className={classes.cardStyle}           /*Rank Image*/
-          />
-        </Grid>
-        <Grid item sx={4} className={classes.tier}>
-          <Typography variant='h5' fontWeight={500} >
-              GOLD 4 
-          </Typography>
-          <Typography variant='h6'>45Lp</Typography>
-        </Grid>
-        <Grid item sx={6} textAlign='right' flex='1' paddingRight={5} >
-          <Typography variant='h6'>
-            156W 152P
-          </Typography>
-          <Typography variant='h6'>
-            Win ratio 51%
-          </Typography>
-        </Grid>
+        <Grid container spacing={2} paddingTop={15}>
+          <Grid className="playerName" container xs={12} alignContent="center" >
+            <Box sx={{display: 'flex', flexDirection: 'row'}}>
+              <img className="profileIcon" src={profileIcon} alt='Profile Icon'></img>
+            </Box>
+              
+
+          </Grid>
 
 
+
+        </Grid>
         
-      </Grid>
+
+
+
+
+
+      </Container>
+
+
 
     )
 }
