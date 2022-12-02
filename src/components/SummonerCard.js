@@ -12,6 +12,9 @@ const profileIcon = "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profile
 let tier = props.tier
 let rankIcon = rankImages[tier]
 
+console.log(rankIcon)
+
+
 const useStyles = makeStyles({
   cardStyle: {
     backgroundColor:"#1E5F74",
@@ -19,7 +22,7 @@ const useStyles = makeStyles({
     margin:"auto"
   },
   containerStyle:{
-    background:'#133B5C',
+    background:'#251B32',
     color:'white',
     borderRadius:50,
     borderStyle: 'solid',
@@ -37,7 +40,7 @@ const useStyles = makeStyles({
 const classes = useStyles()
 
     return(
-      <Grid container sx={{maxWidth:500}} backgroundColor="#251B37" borderRadius={50} className={classes.containerStyle} alignItems='center'>
+      <Grid container sx={{maxWidth:500}} backgroundColor="#251B32" borderRadius={50} className={classes.containerStyle} alignItems='center'>
 
         <Grid item xs="auto">
           
