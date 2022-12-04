@@ -1,0 +1,16 @@
+*{
+    background-color: #160F30;
+}
+
+.container{
+    background-color: #160F30;
+}
+.playerName{
+    background-color: #413383;
+    min-height: 7em;
+}
+.profileIcon{
+    height: 63px;
+    width: 63;
+    padding:0;
+}

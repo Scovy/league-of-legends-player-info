@@ -7,6 +7,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import {
   Route,
   Routes,
+  Link,
 } from "react-router-dom";
 function App() {
   const API_KEY = "RGAPI-acde74a5-d58e-40cd-b2dd-b2434d29d24d"
@@ -47,22 +48,22 @@ function playerSearch(){
 
 <Route path='/' element={
    <div className="container">
-   <img className="emoteImg" src={require("./emote.png")}></img>
-   <div className="searchBar">
-     <TextField
-       variant="standard"
-       className='searchbox'
-       type="text"
-       placeholder='Enter your Summoner Name'
-       value={playerName}
-       onChange={e => setPlayerName(e.target.value)}>
-     </TextField>
-     <Button
-       variant='contained' href='/info' position='center' className="search-player-button" onClick={playerSearch}>
-       Search
-     </Button>
-   </div>
- </div>
+    <img className="emoteImg" src={require("./emote.png")}></img>
+    <div className="searchBar">
+      <TextField
+        variant="standard"
+        className='searchbox'
+        type="text"
+        placeholder='Enter your Summoner Name'
+        value={playerName}
+        onChange={e => setPlayerName(e.target.value)}>
+      </TextField>
+      <Button
+        component={Link} to="/info" variant='contained' position='center' className="search-player-button" onClick={playerSearch}>
+        Search
+      </Button>
+    </div>
+  </div>
 }/>
    
     
