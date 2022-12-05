@@ -10,7 +10,7 @@ import {
   Link,
 } from "react-router-dom";
 function App() {
-  const API_KEY = "RGAPI-acde74a5-d58e-40cd-b2dd-b2434d29d24d"
+  const API_KEY = "RGAPI-22753eaf-1ce5-4761-b19d-09c2075e9eb3"
   const API_ROUTE = "https://eun1.api.riotgames.com"
 
   const [playerName, setPlayerName] = useState("")
