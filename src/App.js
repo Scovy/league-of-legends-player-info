@@ -4,13 +4,14 @@ import "./App.css";
 import SummonerCard from "./components/SummonerCard";
 import { Button, TextField} from "@mui/material";
 import SearchIcon from '@mui/icons-material/Search';
+import MatchHistory from "./components/MatchHistory";
 import {
   Route,
   Routes,
   Link,
 } from "react-router-dom";
 function App() {
-  const API_KEY = "RGAPI-22753eaf-1ce5-4761-b19d-09c2075e9eb3"
+  const API_KEY = "RGAPI-289bf4f0-ed7c-414b-8acc-58716a3e69f9"
   const API_ROUTE = "https://eun1.api.riotgames.com"
 
   const [playerName, setPlayerName] = useState("")
@@ -70,7 +71,7 @@ function playerSearch(){
       <Route path='/info' element={<SummonerCard {...summonerQueue[0]} summonerInfo={summonerData} />}/>
     
 
-        
+      
 </Routes>
   );
 }

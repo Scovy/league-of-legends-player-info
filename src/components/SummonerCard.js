@@ -4,6 +4,7 @@ import {Card, CardActions, CardContent, CardMedia, Button, Typography, Grid, Tex
 import { makeStyles, createTheme } from '@mui/styles';
 import { borderColor } from '@mui/system';
 import styles from './/styles/SummonerCard.css';
+import MatchHistory from './MatchHistory';
 export default function SummonerCard(props){
 
 
@@ -36,14 +37,27 @@ console.log(props.summonerInfo.name)
               <div className='rankedCard'>This is the first container</div>
           </Grid>
             <Grid item xs={8}>
-              <div>This is the second container</div>
+              <div >
+                <Grid item xs={6}>
+                  <div className='matchHistoryCard'>Div 1</div>
+            </Grid>
+            <Grid item xs={6}>
+                  <div>Div 2</div>
+            </Grid>
+            <Grid item xs={6}>
+                  <div>Div 3</div>
+            </Grid>
+            <Grid item xs={6}>
+                  <div>Div 4</div>
+            </Grid>
+              </div>
             </Grid>
           </Grid>
           
 
         </Grid>
         
-
+          <MatchHistory/>
 
 
 

@@ -1,39 +1,44 @@
-import axios from "axios";
-import { useState } from "react";
-export default function ApiCall(){
-
-    const API_KEY = "RGAPI-ea3eb129-69c1-4d5f-946b-06d97270ba3d"
-    const API_ROUTE = "https://eun1.api.riotgames.com"
-
-    const [playerName, setPlayerName] = useState("")
-    const [summonerData, setSummonerData] = useState("")
-    const [currentPUUID, setCurrentPUUID] = useState("")
+const express = require('express')
+const cors = require('cors')
+const axios = require('axios')
+const { response } = require('express')
 
 
-    function playerSearch(event){
-        let API_CALL = (API_ROUTE + "/lol/summoner/v4/summoners/by-name/" + playerName + "?api_key=" + API_KEY)
-        console.log(API_CALL)
-        axios.get(API_CALL)
-        .then(function(response){
-            setSummonerData(response.data)
-            setCurrentPUUID(response.data.puuid)
+const playerName = 'Fr4ggz'
+const API_SERVER_ROUTE = 'https://eun1.api.riotgames.com'
+const API_REGION_ROUTE = 'europe.api.riotgames.com'
+const API_ROUTE_BY_NAME = '/lol/summoner/v4/summoners/by-name/'
+const API_KEY = 'RGAPI-3b85a22a-2c28-4fd2-a4f2-07a63e18c6a0'
+
+
+
+const app = express()
+app.use(cors())
+
+function playerPUUID(playerName){
+    return axios.get(API_SERVER_ROUTE + API_ROUTE_BY_NAME + playerName + '?api_key=' + API_KEY)
+        .then(response => {
+            console.log(response.data)
+            return response.data.puuid
         })
-        .catch(error => console.log("error"))
-    }
-    console.log(summonerData)
-    return(
-        <div className="card--wrapper">
-        
-        <input 
-        type="text" 
-        value={playerName}
-        onChange={e => setPlayerName(e.target.value)}>
-        </input>
-        <button className="search-player-button" onClick={playerSearch}></button>
-        <h1 className="summoner_name">{summonerData.name}</h1>
-        <h2>{summonerData.summonerLevel}</h2>
-        <h3>{currentPUUID}</h3>
-        
-        </div>
-    );
 }
+
+app.get('/lastGames', async(req, res)=>{
+    console.log(playerName)
+    const PUUID = await playerPUUID(playerName)
+    const API_MATCH_HISTORY = API_REGION_ROUTE + "/lol/match/v5/matches/by-puuid/" + PUUID + "/ids?api_key=" +API_KEY
+    const gameIDs = await axios.get(API_MATCH_HISTORY)
+        .then(response => response.data)
+        .catch(err => err)
+    var matchArr = []
+    for(let i=0 ; i < gameIDs.length -15; i++){
+        const matchID = gameIDs[i];
+        const matchData = await axios.get(API_REGION_ROUTE + " /lol/match/v5/matches/" + matchID + '?api_key=' + API_KEY)
+        matchArr.push(matchData)
+    }
+    res.json(matchID)
+})
+
+
+
+app.listen(8000, () => console.log('Server started at port 8000'))
