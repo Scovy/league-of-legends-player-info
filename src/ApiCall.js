@@ -1,44 +1,46 @@
-const express = require('express')
-const cors = require('cors')
+let express = require('express')
+let cors = require('cors')
 const axios = require('axios')
+const { PlaceTwoTone } = require('@mui/icons-material')
 const { response } = require('express')
 
 
-const playerName = 'Fr4ggz'
-const API_SERVER_ROUTE = 'https://eun1.api.riotgames.com'
-const API_REGION_ROUTE = 'europe.api.riotgames.com'
-const API_ROUTE_BY_NAME = '/lol/summoner/v4/summoners/by-name/'
-const API_KEY = 'RGAPI-3b85a22a-2c28-4fd2-a4f2-07a63e18c6a0'
+var app = express()
 
-
-
-const app = express()
 app.use(cors())
 
-function playerPUUID(playerName){
-    return axios.get(API_SERVER_ROUTE + API_ROUTE_BY_NAME + playerName + '?api_key=' + API_KEY)
-        .then(response => {
-            console.log(response.data)
-            return response.data.puuid
-        })
-}
+const API_KEY = 'RGAPI-d0e490fb-5e11-47e4-87dd-b206891715ab'
 
-app.get('/lastGames', async(req, res)=>{
-    console.log(playerName)
-    const PUUID = await playerPUUID(playerName)
-    const API_MATCH_HISTORY = API_REGION_ROUTE + "/lol/match/v5/matches/by-puuid/" + PUUID + "/ids?api_key=" +API_KEY
-    const gameIDs = await axios.get(API_MATCH_HISTORY)
+function getPUUID(playerName){
+    return axios.get('https://eun1.api.riotgames.com' + '/lol/summoner/v4/summoners/by-name/' + playerName + "?api_key=" + API_KEY)
+    .then(response =>{
+        console.log(response.data)
+        return response.data.puuid
+    }).catch(err => err)
+}
+app.get('/games', async (req,res) =>{
+    const playerName = 'Fr4ggz'
+    const PUUID = await getPUUID(playerName)
+    const API_CALL = "https://europe.api.riotgames.com" + "/lol/match/v5/matches/by-puuid/" + PUUID + '/ids' + '?api_key=' + API_KEY
+
+    const gameIDs = await axios.get(API_CALL)
         .then(response => response.data)
-        .catch(err => err)
-    var matchArr = []
-    for(let i=0 ; i < gameIDs.length -15; i++){
-        const matchID = gameIDs[i];
-        const matchData = await axios.get(API_REGION_ROUTE + " /lol/match/v5/matches/" + matchID + '?api_key=' + API_KEY)
-        matchArr.push(matchData)
+        .catch(err=>err)
+    const gameIDsArray = Object.keys(gameIDs).map(key => gameIDs[key])
+    console.log(gameIDsArray)
+    console.log(typeof(gameIDsArray))
+    let matchDataArray =[]
+
+    for(var i=0;i<gameIDsArray.length -15; i++){
+        const matchID = gameIDsArray[i]
+        const matchData = await axios.get('https://europe.api.riotgames.com/lol/match/v5/matches/' + matchID + '?api_key=' + API_KEY)
+            .then(response => response.data)
+            .catch(err => err)
+        matchDataArray.push(matchData)
     }
-    res.json(matchID)
+    
+    res.json(matchDataArray)
 })
 
-
-
-app.listen(8000, () => console.log('Server started at port 8000'))
+app.listen(4000, ()=> console.log('server started on port 4000'))
+ 

@@ -28,7 +28,7 @@ function playerSearch(){
     setSummonerData(response.data)  
   })
 }
-       
+  console.log(playerName)
 
 
     useEffect(()=>{
@@ -56,7 +56,7 @@ function playerSearch(){
         className='searchbox'
         type="text"
         placeholder='Enter your Summoner Name'
-        value={playerName}
+        defaultValue={playerName}
         onChange={e => setPlayerName(e.target.value)}>
       </TextField>
       <Button
@@ -68,7 +68,7 @@ function playerSearch(){
 }/>
    
     
-      <Route path='/info' element={<SummonerCard {...summonerQueue[0]} summonerInfo={summonerData} />}/>
+      <Route path='/info' element={<SummonerCard {...summonerQueue[0]} summonerInfo={summonerData} playerName />}/>
     
 
       

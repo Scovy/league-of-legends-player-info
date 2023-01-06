@@ -7,6 +7,8 @@ import styles from './/styles/SummonerCard.css';
 import MatchHistory from './MatchHistory';
 export default function SummonerCard(props){
 
+const playerName = props.playerName
+console.log(playerName)
 
 
 const profileIcon = "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/" + props.summonerInfo.profileIconId +".png"
@@ -53,7 +55,7 @@ console.log(props.summonerInfo.name)
               </div>
             </Grid>
           </Grid>
-          
+          <h1></h1>
 
         </Grid>
         
