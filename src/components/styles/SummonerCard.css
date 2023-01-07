@@ -61,3 +61,8 @@
     min-width: 100%;
     min-height: 100%;
 }
+.matchHistoryCard {
+    background-color: #413383;
+    width: 100%;
+
+}

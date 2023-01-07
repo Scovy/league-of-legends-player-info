@@ -4,8 +4,11 @@ import {Card, CardActions, CardContent, CardMedia, Button, Typography, Grid, Tex
 import { makeStyles, createTheme } from '@mui/styles';
 import { borderColor } from '@mui/system';
 import styles from './/styles/SummonerCard.css';
+import MatchHistory from './MatchHistory';
 export default function SummonerCard(props){
 
+const playerName = props.playerName
+console.log(playerName)
 
 
 const profileIcon = "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/" + props.summonerInfo.profileIconId +".png"
@@ -27,7 +30,7 @@ console.log(props.summonerInfo.name)
               <img className="profileIcon" src={profileIcon} alt='Profile Icon'></img>
               <Typography  className="profileLevel" lineHeight={1.2} fontSize={12}>{props.summonerInfo.summonerLevel}</Typography>
             </Box>
-            <Typography className="profileName" fontWeight={'bold'}>{props.summonerInfo.name}</Typography>
+            <Typography className="profileName" fontWeight={'bold'}>aaa{props.summonerInfo.name}</Typography>
           </Grid>
 
           <Grid container spacing={3}>
@@ -36,14 +39,27 @@ console.log(props.summonerInfo.name)
               <div className='rankedCard'>This is the first container</div>
           </Grid>
             <Grid item xs={8}>
-              <div>This is the second container</div>
+              <div >
+                <Grid item xs={6}>
+                  <div className='matchHistoryCard'>Div 1</div>
+            </Grid>
+            <Grid item xs={6}>
+                  <div>Div 2</div>
+            </Grid>
+            <Grid item xs={6}>
+                  <div>Div 3</div>
+            </Grid>
+            <Grid item xs={6}>
+                  <div>Div 4</div>
+            </Grid>
+              </div>
             </Grid>
           </Grid>
-          
+          <h1></h1>
 
         </Grid>
         
-
+          <MatchHistory/>
 
 
 

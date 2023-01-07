@@ -1,7 +1,15 @@
-export default function MatchHistory(){
+import axios from 'axios';
+import React from 'react';
+import { useState, useEffect } from 'react';
 
-    return(
-            <div></div>
-    );
+function MatchHistory() {
+  const [matchHistory, setMatchHistory] = useState([]);
 
-}
+
+ return(
+  <div></div>
+
+
+ )
+ }
+export default MatchHistory;
