@@ -1,7 +1,6 @@
 let express = require('express')
 let cors = require('cors')
 const axios = require('axios')
-const { PlaceTwoTone } = require('@mui/icons-material')
 const { response } = require('express')
 
 
@@ -17,10 +16,13 @@ function getPUUID(playerName){
         console.log(response.data)
         return response.data.puuid
     }).catch(err => err)
+
 }
 app.get('/games', async (req,res) =>{
     const playerName = 'Fr4ggz'
     const PUUID = await getPUUID(playerName)
+    
+
     const API_CALL = "https://europe.api.riotgames.com" + "/lol/match/v5/matches/by-puuid/" + PUUID + '/ids' + '?api_key=' + API_KEY
 
     const gameIDs = await axios.get(API_CALL)
@@ -40,6 +42,15 @@ app.get('/games', async (req,res) =>{
     }
     
     res.json(matchDataArray)
+})
+app.get('/summonerInfo', async(req,res)=>{
+    const playerName = 'Fr4ggz'
+    const summonerInfo = await axios.get('https://eun1.api.riotgames.com' + '/lol/summoner/v4/summoners/by-name/' + playerName + "?api_key=" + API_KEY)
+    .then(response => JSON.stringify(response.data))
+    .catch(err=>err)
+
+    console.log(JSON.stringify(summonerInfo))
+    res(summonerInfo)
 })
 
 app.listen(4000, ()=> console.log('server started on port 4000'))

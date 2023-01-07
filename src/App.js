@@ -56,7 +56,7 @@ function playerSearch(){
         className='searchbox'
         type="text"
         placeholder='Enter your Summoner Name'
-        defaultValue={playerName}
+        value={playerName}
         onChange={e => setPlayerName(e.target.value)}>
       </TextField>
       <Button

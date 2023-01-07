@@ -30,7 +30,7 @@ console.log(props.summonerInfo.name)
               <img className="profileIcon" src={profileIcon} alt='Profile Icon'></img>
               <Typography  className="profileLevel" lineHeight={1.2} fontSize={12}>{props.summonerInfo.summonerLevel}</Typography>
             </Box>
-            <Typography className="profileName" fontWeight={'bold'}>{props.summonerInfo.name}</Typography>
+            <Typography className="profileName" fontWeight={'bold'}>aaa{props.summonerInfo.name}</Typography>
           </Grid>
 
           <Grid container spacing={3}>
