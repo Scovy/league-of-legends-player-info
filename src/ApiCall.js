@@ -1,14 +1,16 @@
+require('dotenv').config();
 let express = require('express')
 let cors = require('cors')
 const axios = require('axios')
 const { response } = require('express')
 
 
+
 var app = express()
 
 app.use(cors())
 
-const API_KEY = 'RGAPI-d0e490fb-5e11-47e4-87dd-b206891715ab'
+const API_KEY = process.env.API_KEY
 
 function getPUUID(playerName){
     return axios.get('https://eun1.api.riotgames.com' + '/lol/summoner/v4/summoners/by-name/' + playerName + "?api_key=" + API_KEY)
@@ -19,7 +21,7 @@ function getPUUID(playerName){
 
 }
 app.get('/games', async (req,res) =>{
-    const playerName = 'Fr4ggz'
+    const playerName = req.query.nickname
     const PUUID = await getPUUID(playerName)
     
 
@@ -46,11 +48,11 @@ app.get('/games', async (req,res) =>{
 app.get('/summonerInfo', async(req,res)=>{
     const playerName = 'Fr4ggz'
     const summonerInfo = await axios.get('https://eun1.api.riotgames.com' + '/lol/summoner/v4/summoners/by-name/' + playerName + "?api_key=" + API_KEY)
-    .then(response => JSON.stringify(response.data))
+    .then(response => (response.data))
     .catch(err=>err)
 
     console.log(JSON.stringify(summonerInfo))
-    res(summonerInfo)
+    res.send(summonerInfo)
 })
 
 app.listen(4000, ()=> console.log('server started on port 4000'))
