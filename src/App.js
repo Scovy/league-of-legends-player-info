@@ -1,57 +1,84 @@
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import SummonerCard from "./components/SummonerCard";
-import { Button, TextField} from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import MatchHistory from "./components/MatchHistory";
-import {
-  Route,
-  Routes,
-  Link,
-} from "react-router-dom";
-function App() {
+import { Route, Routes, Link } from "react-router-dom";
 
-  const [playerName, setPlayerName] = useState("")
-  const [matchList, setMatchList] = useState([])  
-  function playerSearch(){
-    axios.get('http://localhost:4000/games', {params:{nickname:playerName}})
-      .then((response)=> {
-        setMatchList(response.data)
-      }).catch((err)=>{
-        console.log(err)
-      })
-  }
+function App() {
+  const [playerName, setPlayerName] = useState("");
+  const [matchList, setMatchList] = useState([{}]);
+  const [summonerData, setSummonerData] = useState([]);
+
+  useEffect(() => {
+    playerSearch();
+  }, [playerName]);
+
+  const playerSearch = async () => {
+    try {
+      const summonerResponse = await axios.get(
+        "http://localhost:4000/summonerInfo",
+        { params: { nickname: playerName } }
+      );
+      setSummonerData(summonerResponse.data);
+      const matchResponse = await axios.get(
+        "http://localhost:4000/games",
+        { params: { nickname: playerName } }
+      );
+      setMatchList(matchResponse.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
-<Routes>        
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <div className="container">
+            <img className="emoteImg" src={require("./emote.png")}></img>
+            <div className="searchBar">
+              <TextField
+                variant="standard"
+                className="searchbox"
+                type="text"
+                placeholder="Enter your Summoner Name"
+                value={playerName}
+                onChange={(e) => setPlayerName(e.target.value)}
+              ></TextField>
+              <Button
+                component={Link}
+                to="/info"
+                variant="contained"
+                position="center"
+                className="search-player-button"
+              >
+                Search
+              </Button>
+            </div>
+          </div>
+        }
+      />
 
-<Route path='/' element={
-   <div className="container">
-    <img className="emoteImg" src={require("./emote.png")}></img>
-    <div className="searchBar">
-      <TextField
-        variant="standard"
-        className='searchbox'
-        type="text"
-        placeholder='Enter your Summoner Name'
-        value={playerName}
-        onChange={e => setPlayerName(e.target.value)}>
-      </TextField>
-      <Button
-        component={Link} to="/info" variant='contained' position='center' className="search-player-button" onClick={playerSearch}>
-        Search
-      </Button>
-    </div>
-  </div>
-}/>
-   
-    
-      <Route path='/info' element={<SummonerCard  />}/>
-    
-
-      
-</Routes>
+      {summonerData && matchList ? (
+        <>
+        <Route
+            path="/info"
+            element={<MatchHistory matchData={matchList} />}
+          />
+          <Route
+            path="/info"
+            element={<SummonerCard summonerInfo={summonerData} />}
+          />
+          
+        </>
+      ) : (
+        <h1>Loading...</h1>
+      )}
+    </Routes>
   );
 }
 
-export default App;
+export default App

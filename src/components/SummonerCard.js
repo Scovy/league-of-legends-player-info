@@ -1,14 +1,13 @@
 import * as React from 'react';
 import rankImages from './rankImages.json'
 import {Card, CardActions, CardContent, CardMedia, Button, Typography, Grid, TextField, Container, Box} from '@mui/material'
-import { makeStyles, createTheme } from '@mui/styles';
-import { borderColor } from '@mui/system';
+//import { makeStyles, createTheme } from '@mui/styles';
+//import { borderColor } from '@mui/system';
 import styles from './/styles/SummonerCard.css';
 import MatchHistory from './MatchHistory';
 export default function SummonerCard(props){
 
-const playerName = props.playerName
-console.log(playerName)
+
 
 
 const profileIcon = "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/" + props.summonerInfo.profileIconId +".png"
@@ -16,7 +15,7 @@ const profileIcon = "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profile
 let tier = props.tier
 let rankIcon = rankImages[tier]
 
-console.log(props.summonerInfo.name)
+console.log(props.summonerInfo , '<= summonerInfo prop passed from App.js')
 
 
 
@@ -30,7 +29,7 @@ console.log(props.summonerInfo.name)
               <img className="profileIcon" src={profileIcon} alt='Profile Icon'></img>
               <Typography  className="profileLevel" lineHeight={1.2} fontSize={12}>{props.summonerInfo.summonerLevel}</Typography>
             </Box>
-            <Typography className="profileName" fontWeight={'bold'}>aaa{props.summonerInfo.name}</Typography>
+            <Typography className="profileName" fontWeight={'bold'}>{props.summonerInfo.name}</Typography>
           </Grid>
 
           <Grid container spacing={3}>

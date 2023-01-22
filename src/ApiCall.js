@@ -35,7 +35,7 @@ app.get('/games', async (req,res) =>{
     console.log(typeof(gameIDsArray))
     let matchDataArray =[]
 
-    for(var i=0;i<gameIDsArray.length -15; i++){
+    for(var i=0;i<gameIDsArray.length -10; i++){
         const matchID = gameIDsArray[i]
         const matchData = await axios.get('https://europe.api.riotgames.com/lol/match/v5/matches/' + matchID + '?api_key=' + API_KEY)
             .then(response => response.data)
@@ -46,7 +46,7 @@ app.get('/games', async (req,res) =>{
     res.json(matchDataArray)
 })
 app.get('/summonerInfo', async(req,res)=>{
-    const playerName = 'Fr4ggz'
+    const playerName = req.query.nickname
     const summonerInfo = await axios.get('https://eun1.api.riotgames.com' + '/lol/summoner/v4/summoners/by-name/' + playerName + "?api_key=" + API_KEY)
     .then(response => (response.data))
     .catch(err=>err)
