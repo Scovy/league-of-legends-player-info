@@ -20,6 +20,7 @@ function getPUUID(playerName){
     }).catch(err => err)
 
 }
+
 app.get('/games', async (req,res) =>{
     const playerName = req.query.nickname
     const PUUID = await getPUUID(playerName)

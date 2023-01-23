@@ -1,10 +1,10 @@
+import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import "./App.css";
-import SummonerCard from "./components/SummonerCard";
 import { Button, TextField } from "@mui/material";
-import MatchHistory from "./components/MatchHistory";
 import { Route, Routes, Link } from "react-router-dom";
+import MatchHistory from "./components/MatchHistory";
+import SummonerData from "./components/SummonerData";
 
 function App() {
   const [playerName, setPlayerName] = useState("");
@@ -22,6 +22,7 @@ function App() {
         { params: { nickname: playerName } }
       );
       setSummonerData(summonerResponse.data);
+
       const matchResponse = await axios.get(
         "http://localhost:4000/games",
         { params: { nickname: playerName } }
@@ -61,22 +62,19 @@ function App() {
           </div>
         }
       />
+      
+      
+        
+       
+      <Route
+            path="/info"
+            element={<>
+            {Object.keys(summonerData).length > 0 && <SummonerData summonerInfo={summonerData}/> }
+            {matchList.length > 0 && <MatchHistory matchData={matchList} /> }
+            </>}
+          />
 
-      {summonerData && matchList ? (
-        <>
-        <Route
-            path="/info"
-            element={<MatchHistory matchData={matchList} />}
-          />
-          <Route
-            path="/info"
-            element={<SummonerCard summonerInfo={summonerData} />}
-          />
-          
-        </>
-      ) : (
-        <h1>Loading...</h1>
-      )}
+        
     </Routes>
   );
 }
