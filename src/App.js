@@ -2,8 +2,8 @@ import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Button, TextField } from "@mui/material";
-import { Route, Routes, Link } from "react-router-dom";
 import MatchHistory from "./components/MatchHistory";
+import { Route, Routes, Link } from "react-router-dom";
 import SummonerData from "./components/SummonerData";
 
 function App() {
@@ -32,7 +32,8 @@ function App() {
       console.log(error);
     }
   };
-
+  console.log(summonerData)
+console.log(summonerData.length)
   return (
     <Routes>
       <Route
@@ -69,7 +70,7 @@ function App() {
       <Route
             path="/info"
             element={<>
-            {Object.keys(summonerData).length > 0 && <SummonerData summonerInfo={summonerData}/> }
+            {Object.keys(summonerData).length > 0 && <SummonerData summonerInfo={summonerData.summoner} queueInfo={summonerData.queue}/> }
             {matchList.length > 0 && <MatchHistory matchData={matchList} /> }
             </>}
           />

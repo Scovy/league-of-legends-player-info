@@ -9,15 +9,20 @@ function MatchHistory({ matchData }) {
         <Grid item xs={12}>
           <Paper>
             <Typography variant="h5">Game {index + 1}</Typography>
-            <Grid container spacing={3}>
+            <Grid container >
               <Grid item xs={6}>
                 {match.info.participants.slice(0, 5).map((data, participantIndex)=>
-                  <Typography>Player {participantIndex + 1}: {data.summonerName} - {data.championName} <img alt='Champion Avatar' className='championAvatar' src={'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/' + data.championName + '.png'}/></Typography>
+                  <Typography><img alt='Champion Avatar' className='championAvatar' src={'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/' + data.championName + '.png'}/> 
+                  
+                  {data.summonerName} - {data.championName} </Typography>
                 )}
               </Grid>
               <Grid item xs={6}>
                 {match.info.participants.slice(5).map((data, participantIndex)=>
-                  <Typography>Player {participantIndex + 1}: {data.summonerName} - {data.championName} <img alt='Champion Avatar' className='championAvatar' src={'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/' + data.championName + '.png'}/></Typography>
+                  <Typography><img alt='Champion Avatar' className='championAvatar' src={'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/' + data.championName + '.png'}/> 
+                  
+                  
+                  {data.summonerName} - {data.championName} </Typography>
                 )}
               </Grid>
             </Grid>

@@ -2,7 +2,6 @@ require('dotenv').config();
 let express = require('express')
 let cors = require('cors')
 const axios = require('axios')
-const { response } = require('express')
 
 
 
@@ -32,10 +31,8 @@ app.get('/games', async (req,res) =>{
         .then(response => response.data)
         .catch(err=>err)
     const gameIDsArray = Object.keys(gameIDs).map(key => gameIDs[key])
-    console.log(gameIDsArray)
-    console.log(typeof(gameIDsArray))
     let matchDataArray =[]
-
+    //Getting last 10 games
     for(var i=0;i<gameIDsArray.length -10; i++){
         const matchID = gameIDsArray[i]
         const matchData = await axios.get('https://europe.api.riotgames.com/lol/match/v5/matches/' + matchID + '?api_key=' + API_KEY)
@@ -48,13 +45,23 @@ app.get('/games', async (req,res) =>{
 })
 app.get('/summonerInfo', async(req,res)=>{
     const playerName = req.query.nickname
-    const summonerInfo = await axios.get('https://eun1.api.riotgames.com' + '/lol/summoner/v4/summoners/by-name/' + playerName + "?api_key=" + API_KEY)
-    .then(response => (response.data))
+    let summonerInfo = {}
+    const summonerData = await axios.get('https://eun1.api.riotgames.com' + '/lol/summoner/v4/summoners/by-name/' + playerName + "?api_key=" + API_KEY)
+    .then(response => {
+        summonerInfo.summoner = response.data;
+        return response.data.id;
+    })
+    .catch(err=>err)
+
+    const leagueData = await axios.get('https://eun1.api.riotgames.com/lol/league/v4/entries/by-summoner/'+ summonerData +'?api_key='+ API_KEY)
+    .then(response => {
+        summonerInfo.queue = response.data;
+    })
     .catch(err=>err)
 
     console.log(JSON.stringify(summonerInfo))
     res.send(summonerInfo)
 })
 
-app.listen(4000, ()=> console.log('server started on port 4000'))
+app.listen(4000, ()=> console.log('server on port 4000'))
  
