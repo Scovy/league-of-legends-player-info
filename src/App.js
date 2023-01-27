@@ -2,14 +2,20 @@ import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Button, TextField } from "@mui/material";
-import MatchHistory from "./components/MatchHistory";
-import { Route, Routes, Link } from "react-router-dom";
 import SummonerData from "./components/SummonerData";
+import MatchHistory from "./components/MatchHistory";
+import RankedSideBar from "./components/RankedSideBar";
+import { Route, Routes, Link } from "react-router-dom";
+
 
 function App() {
   const [playerName, setPlayerName] = useState("");
   const [matchList, setMatchList] = useState([{}]);
   const [summonerData, setSummonerData] = useState([]);
+
+  localStorage.setItem("playerName", playerName);
+  localStorage.setItem("matchList", JSON.stringify(matchList));
+  localStorage.setItem("summonerData", JSON.stringify(summonerData));
 
   useEffect(() => {
     playerSearch();
@@ -70,7 +76,8 @@ console.log(summonerData.length)
       <Route
             path="/info"
             element={<>
-            {Object.keys(summonerData).length > 0 && <SummonerData summonerInfo={summonerData.summoner} queueInfo={summonerData.queue}/> }
+            {Object.keys(summonerData).length > 0 && <SummonerData summonerInfo={summonerData.summoner}/> }
+            {Object.keys(summonerData).length > 0 && <RankedSideBar queueInfo={summonerData.queue}/>}
             {matchList.length > 0 && <MatchHistory matchData={matchList} /> }
             </>}
           />
