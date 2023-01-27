@@ -1,10 +1,12 @@
 import './styles/MatchHistory.css'
 import { Grid, Paper, Typography } from '@mui/material'
 function MatchHistory({ matchData }) {
+
+
   const matchDataArray = matchData
   console.log(matchData)
   return (
-    <Grid container spacing={3}>
+    <Grid container spacing={3} className="matchhistory--wrapper">
       {matchDataArray.map((match, index)=>
        <Grid item xs={12}>
        <Paper style={{width: '50%'}}>  {/*add width here*/}
