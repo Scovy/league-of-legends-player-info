@@ -75,11 +75,17 @@ console.log(summonerData.length)
        
       <Route
             path="/info"
-            element={<>
+            element={
+            <>
+            <div className="app_wrapper">
+              <div className="content">
             {Object.keys(summonerData).length > 0 && <SummonerData summonerInfo={summonerData.summoner}/> }
             {Object.keys(summonerData).length > 0 && <RankedSideBar queueInfo={summonerData.queue}/>}
             {matchList.length > 0 && <MatchHistory matchData={matchList} /> }
-            </>}
+              </div>
+            </div>
+            </>
+            }
           />
 
         

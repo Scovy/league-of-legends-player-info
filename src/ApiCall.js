@@ -59,7 +59,6 @@ app.get('/summonerInfo', async(req,res)=>{
     })
     .catch(err=>err)
 
-    console.log(JSON.stringify(summonerInfo))
     res.send(summonerInfo)
 })
 

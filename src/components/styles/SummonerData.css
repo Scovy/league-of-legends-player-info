@@ -1,0 +1,33 @@
+
+.profileInfo__wrapper{
+    min-height: 2em;
+
+}
+.profileIcon{
+    height: 63px;
+    width: 63;
+    padding:0;
+    border-color: #f50057;
+    border-style: solid;
+    border-width: 3px;
+    border-radius: 5px;
+}
+
+.profileInfo{
+    position: relative;
+    margin-left: 20px;
+}
+.profileLevel{
+    
+    margin:0 auto;
+    border-style: solid;
+    position: absolute;
+    top:73px;
+    left: 50%;
+    border-color: #f50057;
+    border-width: 2px;
+    border-radius: 4px;
+    transform: translate(-50%, -50%);
+}
+
+
