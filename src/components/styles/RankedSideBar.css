@@ -1,0 +1,24 @@
+.rankedCard_wrapper{
+
+    width: 270px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    padding: 10px;
+
+}
+.rankImage{
+    width: 60px;
+    object-fit: cover;
+}
+.queueInfoDisplay{
+    color:white;
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+.winRatio{
+    text-align: right;
+}
