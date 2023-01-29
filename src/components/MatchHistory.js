@@ -6,10 +6,10 @@ function MatchHistory({ matchData }) {
   const matchDataArray = matchData
   console.log(matchData)
   return (
-    <Grid container spacing={3} className="matchhistory--wrapper">
+    <Grid container className="matchhistory_wrapper">
       {matchDataArray.map((match, index)=>
-       <Grid item xs={12}>
-       <Paper style={{width: '50%'}}>  {/*add width here*/}
+       <Grid item>
+       <Paper style={{width: '50%'}}> 
          <Typography variant="h5">Game {index + 1}</Typography>
          <Grid container >
            <Grid item xs={6}>
