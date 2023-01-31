@@ -52,6 +52,7 @@
     ]
   },
   "devDependencies": {
-    "json-loader": "^0.5.7"
+    "json-loader": "^0.5.7",
+    "tailwindcss": "^3.2.4"
   }
 }
