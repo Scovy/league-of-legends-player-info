@@ -1,41 +1,23 @@
 .app_wrapper{
-
+  background: #241D36;
 }
-.content {
-    
-    display: flex;
-    margin: 0 auto;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    
-    
-  }
 
 
 
 
 
 
-  .container{
-    display: grid;
-    width: 100vw;
-    height: 100vh;
-    align-content: center;
-    justify-items: center;
-  }
-.searchbox{
-    color:white;
 
-}
-.searchBar{
-    padding-bottom: 0px;
-    
-}
+    .container{
+      display: grid;
+      width: 100vw;
+      height: 100vh;
+      align-content: center;
+      justify-items: center;
+    }
+
+
 .emoteImg{
-    margin-top:0px;
-    justify-content: center;
-    align-content: center;
+    
 
 }
