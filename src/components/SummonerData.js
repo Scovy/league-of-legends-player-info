@@ -10,18 +10,18 @@ function SummonerData({ summonerInfo }) {
   return (
     <>
 
-        <Box className="profileInfo">
+        <Box className="profileInfo mb-6 ">
           <img
             className="profileIcon"
             src={profileIcon}
             alt="Profile Icon"
           ></img>
-          <Typography className="profileLevel" lineHeight={1.6} fontSize={12}>
+          <h1 className="profileLevel">
             {summonerInfo.summonerLevel}
-          </Typography>
+          </h1>
         </Box>
         <Typography
-          className="profileName"
+          className="profileName text-center"
           fontWeight={"bold"}
           fontSize="1.2em"
         >

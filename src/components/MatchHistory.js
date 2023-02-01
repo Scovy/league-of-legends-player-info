@@ -17,10 +17,11 @@ function MatchHistory({ matchData, playerName }) {
   return(
     <div>
         {matchDataArray.map((match)=> {
+        /*participants index pointing to searched player */ 
     const participantIndex = match.info.participants.findIndex(participant => participant.summonerName === playerName)
 
     return (
-    <div className="mt-2 p-2 place-items-center w-96 h-28 bg-indigo-700 flex rounded-xl" >
+    <div className="mt-2 p-2 place-items-center h-28 bg-indigo-700 flex rounded-xl" >
           <div className="">
             <p className="">{match.info.gameMode}</p>
             <p className="text-justify">{match.info.participants[participantIndex].win ? <p>Win</p> : <p>Lose</p>}</p>
@@ -38,10 +39,23 @@ function MatchHistory({ matchData, playerName }) {
           < div className="h-7 w-7 bg-green-600"></div>
           </div>
           <div className="pl-4 text-center">
-          <h1 className=" ">{match.info.participants[participantIndex].kills} / {match.info.participants[participantIndex].assists} / {match.info.participants[participantIndex].deaths}</h1>
-          <h2 className="">{Math.round(match.info.participants[participantIndex].challenges.kda * 100) /100 }</h2>
-          <h3>CS {match.info.participants[participantIndex].totalMinionsKilled}</h3>
-          <h4>Vision {match.info.participants[participantIndex].visionScore}</h4>
+            <h1 className=" ">{match.info.participants[participantIndex].kills} / {match.info.participants[participantIndex].assists} / {match.info.participants[participantIndex].deaths}</h1>
+            <h2 className="">{Math.round(match.info.participants[participantIndex].challenges.kda * 100) /100 }</h2>
+            <h3>CS {match.info.participants[participantIndex].totalMinionsKilled}</h3>
+            <h4>Vision {match.info.participants[participantIndex].visionScore}</h4>
+          </div>
+          <div className="flex flex-col gap-2 p-5 m-2">
+          <div className="flex gap-1">
+              <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item0}.png`}></img>
+              <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item1}.png`}></img>
+              <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item2}.png`}></img>
+              <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item6}.png`}></img>
+          </div>
+          <div className="flex gap-1">
+              <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item3}.png`}></img>
+              <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item4}.png`}></img>
+              <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item5}.png`}></img>
+          </div>
           </div>
     </div>
     )

@@ -27,7 +27,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start:backend": "nodemon ApiCall.js",
+    "start:backend": "npx nodemon src/ApiCall.js",
     "start:frontend": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
