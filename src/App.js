@@ -103,8 +103,7 @@ function App() {
         path="/info"
         element={
           <>
-            <div className="app_wrapper">
-              <div className="container">
+              <div className="container flex justify-center mx-auto ">
                 {Object.keys(summonerData).length > 0 && (
                   <SummonerData summonerInfo={summonerData.summoner} />
                 )}
@@ -113,7 +112,6 @@ function App() {
                 )}
                 {matchList.length > 0 && <MatchHistory matchData={matchList} playerName={playerName} />}
               </div>
-            </div>
           </>
         }
       />

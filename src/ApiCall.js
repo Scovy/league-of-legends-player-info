@@ -10,6 +10,7 @@ var app = express()
 app.use(cors())
 
 const API_KEY = process.env.API_KEY
+console.log(API_KEY)
 
 function getPUUID(playerName){
     return axios.get('https://eun1.api.riotgames.com' + '/lol/summoner/v4/summoners/by-name/' + playerName + "?api_key=" + API_KEY)
