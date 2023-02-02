@@ -1,6 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
 import SummonerData from "./components/SummonerData";
 import MatchHistory from "./components/MatchHistory";
 import RankedSideBar from "./components/RankedSideBar";
@@ -42,7 +43,7 @@ function App() {
       <Route
         path="/"
         element={
-          <div className="container bg-indigo-900 mx-auto">
+          <div className="container bg-primary-bg mx-auto">
             <img className="emoteImg" src={require("./emote.png")} alt=""></img>
             <div className="searchBar">
               <form onSubmit={handleSubmit} className="flex items-center">
@@ -102,15 +103,18 @@ function App() {
       <Route
         path="/info"
         element={
-          <>
+          <> 
+          <Navbar/>
               <div className="container flex justify-center mx-auto ">
                 {Object.keys(summonerData).length > 0 && (
                   <SummonerData summonerInfo={summonerData.summoner} />
                 )}
+                <div className="flex flex-col sm:flex-row ">
                 {Object.keys(summonerData).length > 0 && (
                   <RankedSideBar queueInfo={summonerData.queue} />
                 )}
                 {matchList.length > 0 && <MatchHistory matchData={matchList} playerName={playerName} />}
+                </div>
               </div>
           </>
         }

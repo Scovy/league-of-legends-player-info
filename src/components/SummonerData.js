@@ -9,6 +9,7 @@ function SummonerData({ summonerInfo }) {
   console.log(summonerInfo);
   return (
     <>
+      <div className="flex justify-center">
 
         <Box className="profileInfo mb-6 ">
           <img
@@ -16,17 +17,15 @@ function SummonerData({ summonerInfo }) {
             src={profileIcon}
             alt="Profile Icon"
           ></img>
-          <h1 className="profileLevel">
+          <h1 className="profileLevel text-white text-sm pl-0.5 pr-0.5">
             {summonerInfo.summonerLevel}
           </h1>
         </Box>
-        <Typography
-          className="profileName text-center"
-          fontWeight={"bold"}
-          fontSize="1.2em"
-        >
+        </div>
+        <h2
+          className=" text-slate-400 font-bold ">
           {summonerInfo.name}
-        </Typography>
+        </h2>
 
 
     </>
