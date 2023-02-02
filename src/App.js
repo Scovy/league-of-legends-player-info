@@ -1,6 +1,7 @@
 import "./App.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Navbar from "./components/Navbar";
 import SummonerData from "./components/SummonerData";
 import MatchHistory from "./components/MatchHistory";
 import RankedSideBar from "./components/RankedSideBar";
@@ -102,15 +103,18 @@ function App() {
       <Route
         path="/info"
         element={
-          <>
+          <> 
+          <Navbar/>
               <div className="container flex justify-center mx-auto ">
                 {Object.keys(summonerData).length > 0 && (
                   <SummonerData summonerInfo={summonerData.summoner} />
                 )}
+                <div className="flex flex-col sm:flex-row ">
                 {Object.keys(summonerData).length > 0 && (
                   <RankedSideBar queueInfo={summonerData.queue} />
                 )}
                 {matchList.length > 0 && <MatchHistory matchData={matchList} playerName={playerName} />}
+                </div>
               </div>
           </>
         }

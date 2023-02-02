@@ -6,7 +6,7 @@ function RankedSideBar({queueInfo}){
 
 
   return(
-    <div className="rankedCard_wrapper bg-secondary-bg rounded-lg" >
+    <div className="rankedCard_wrapper bg-secondary-bg rounded-md mr-2" >
 
             <div className="">
               <div className='bluebar'></div>

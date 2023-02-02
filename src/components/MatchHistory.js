@@ -15,16 +15,16 @@ function MatchHistory({ matchData, playerName }) {
  
 
   return(
-    <div>
+    <div className="flex flex-col bg-tertiary-bg p-5 rounded-sm">
         {matchDataArray.map((match)=> {
         /*participants index pointing to searched player */ 
     const participantIndex = match.info.participants.findIndex(participant => participant.summonerName === playerName)
-
+          console.log(participantIndex)
     return (
-    <div className="mt-2 p-2 place-items-center h-28 bg-secondary-bg flex rounded-xl text-white" >
+    <div className={`mt-2 p-2 place-items-center h-28  flex rounded-md text-white ${match.info.participants[participantIndex].win ? 'bg-[#1E2B5E]' : 'bg-[#3E223B]'}`} >
           <div className="">
             <p className="">{match.info.gameMode}</p>
-            <p className="text-justify">{match.info.participants[participantIndex].win ? <p className="font-bold text-blue-700">Win</p> : <p className="font-bold text-red-600">Lose</p>}</p>
+            <p className="text-justify">{match.info.participants[participantIndex].win ? <p className="font-bold text-blue-700">Win</p> : <p className="font-bold text-red-600">Loss</p>}</p>
           </div>
           <div className="">
             <img className="h-14 w-14" src={'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/' + match.info.participants[participantIndex].championName + '.png' } alt="Img"/>
