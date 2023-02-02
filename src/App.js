@@ -42,7 +42,7 @@ function App() {
       <Route
         path="/"
         element={
-          <div className="container bg-indigo-900 mx-auto">
+          <div className="container bg-primary-bg mx-auto">
             <img className="emoteImg" src={require("./emote.png")} alt=""></img>
             <div className="searchBar">
               <form onSubmit={handleSubmit} className="flex items-center">
