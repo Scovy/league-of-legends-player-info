@@ -11,11 +11,12 @@ import "./styles/MatchHistory.css";
 
 function MatchHistory({ matchData, playerName }) {
   const matchDataStorage = JSON.parse(window.localStorage.getItem('match'))
-  console.log(typeof(matchDataStorage[0].info))
+  console.log()
   const matchDataArray = matchDataStorage;
-
+  console.log(JSON.parse(window.localStorage.getItem('match')).length > 0)
+console.log(matchDataStorage)
  
-
+if (Object.keys(JSON.parse(window.localStorage.getItem('match'))).length > 0){
   return(
     <div className="flex flex-col bg-tertiary-bg p-5 rounded-sm w-full">
         {matchDataArray.map((match)=> {
@@ -65,6 +66,7 @@ function MatchHistory({ matchData, playerName }) {
 
     </div>
   )
+}
 }
 
 export default MatchHistory;
