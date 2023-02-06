@@ -19,9 +19,9 @@ function App() {
 
   useEffect(()=>{
     window.localStorage.setItem('match', JSON.stringify(matchList))
-  })
-
-  console.log()
+  }, [matchList[0]])
+  
+  console.log(matchList)
   useEffect(() => {
     playerSearch();
   }, [playerName]);
@@ -50,7 +50,6 @@ function App() {
   const handlePlayerSubmit = async(player) =>{
     setPlayerName(player)
   }
-
   return (
     <Routes>
       <Route
@@ -119,14 +118,14 @@ function App() {
           <> 
           <Navbar onSubmit={handlePlayerSubmit}/>
               <div className="container flex justify-center mx-auto mt-3">
-                {Object.keys(summonerData).length > 0 && (
+                {Object.keys(summonerData).length > 0 &&  (
                   <SummonerData summonerInfo={summonerData.summoner} />
                 )}
                 <div className="flex flex-col sm:flex-row ">
                 {Object.keys(summonerData).length > 0 && (
                   <RankedSideBar queueInfo={summonerData.queue} />
                 )}
-                {matchList.length > 0 && <MatchHistory matchData={matchList} playerName={playerName} />}
+                {Object.keys(matchList).length > 0 && <MatchHistory matchData={matchList} playerName={playerName} />}
                 </div>
               </div>
           </>

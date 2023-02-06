@@ -3,8 +3,9 @@ import "./styles/SummonerData.css";
 function SummonerData() {
   const summonerInfoStorage = JSON.parse(window.localStorage.getItem('data'))
   const summonerInfo = summonerInfoStorage.summoner
+  console.log(summonerInfo)
 
-  
+  if(Object.keys(JSON.parse(window.localStorage.getItem('data'))).length > 0){
   const profileIcon =
     "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/" +
     summonerInfo.profileIconId +
@@ -13,7 +14,7 @@ function SummonerData() {
     <>
       <div className="flex justify-center">
 
-        <Box className="profileInfo mb-6 ">
+        <Box className="profileInfo mb-6">
           <img
             className="profileIcon"
             src={profileIcon}
@@ -32,5 +33,6 @@ function SummonerData() {
 
     </>
   );
+  }
 }
 export default SummonerData;
