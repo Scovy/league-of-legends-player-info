@@ -1,4 +1,4 @@
-import { Box, Grid, Typography, Card } from "@mui/material";
+import { Box } from "@mui/material";
 import "./styles/SummonerData.css";
 function SummonerData({ summonerInfo }) {
   const profileIcon =
