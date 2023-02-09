@@ -10,13 +10,10 @@ import "./styles/MatchHistory.css";
 */
 
 function MatchHistory({ matchData, playerName }) {
-  const matchDataStorage = JSON.parse(window.localStorage.getItem('match'))
-  console.log()
-  const matchDataArray = matchDataStorage;
-  console.log(JSON.parse(window.localStorage.getItem('match')).length > 0)
-console.log(matchDataStorage)
- 
-if (Object.keys(JSON.parse(window.localStorage.getItem('match'))).length > 0){
+
+  const matchDataArray = matchData;
+
+
   return(
     <div className="flex flex-col bg-tertiary-bg p-5 rounded-sm w-full">
         {matchDataArray.map((match)=> {
@@ -41,7 +38,7 @@ if (Object.keys(JSON.parse(window.localStorage.getItem('match'))).length > 0){
 
           <div className="pl-4 text-center">
             <h1 className=" ">{match.info.participants[participantIndex].kills} /<span className="text-red-600 font-bold"> {match.info.participants[participantIndex].deaths} </span> /  {match.info.participants[participantIndex].assists}</h1>
-            <h2 className="">{Math.round(match.info.participants[participantIndex].challenges.kda * 100) /100 }</h2>
+            <h2 className="">{Math.round((match.info.participants[participantIndex].kills + match.info.participants[participantIndex].assists) / match.info.participants[participantIndex].deaths * 100) /100 }</h2>
             <h3>CS {match.info.participants[participantIndex].totalMinionsKilled}</h3>
             <h4>Vision {match.info.participants[participantIndex].visionScore}</h4>
           </div>
@@ -66,7 +63,7 @@ if (Object.keys(JSON.parse(window.localStorage.getItem('match'))).length > 0){
 
     </div>
   )
-}
+
 }
 
 export default MatchHistory;
