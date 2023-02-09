@@ -1,11 +1,8 @@
 import { Box } from "@mui/material";
 import "./styles/SummonerData.css";
-function SummonerData() {
-  const summonerInfoStorage = JSON.parse(window.localStorage.getItem('data'))
-  const summonerInfo = summonerInfoStorage.summoner
-  console.log(summonerInfo)
+function SummonerData({summonerInfo}) {
 
-  if(Object.keys(JSON.parse(window.localStorage.getItem('data'))).length > 0){
+
   const profileIcon =
     "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/" +
     summonerInfo.profileIconId +
@@ -33,6 +30,6 @@ function SummonerData() {
 
     </>
   );
-  }
+  
 }
 export default SummonerData;

@@ -12,16 +12,7 @@ function App() {
   const [matchList, setMatchList] = useState([{}]);
   const [summonerData, setSummonerData] = useState([]);
   
-  useEffect(()=>{
-    window.localStorage.setItem('data', JSON.stringify(summonerData))
-    window.localStorage.setItem('player', JSON.stringify(matchList))
-  }, [summonerData])
 
-  useEffect(()=>{
-    window.localStorage.setItem('match', JSON.stringify(matchList))
-  }, [matchList[0]])
-  
-  console.log(matchList)
   useEffect(() => {
     playerSearch();
   }, [playerName]);
