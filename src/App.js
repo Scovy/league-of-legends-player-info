@@ -20,12 +20,12 @@ function App() {
   const playerSearch = async () => {
     try {
       const summonerResponse = await axios.get(
-        "http://localhost:4000/summonerInfo",
+        "http://localhost:4002/summonerInfo",
         { params: { nickname: playerName } }
       );
       setSummonerData(summonerResponse.data);
 
-      const matchResponse = await axios.get("http://localhost:4000/games", {
+      const matchResponse = await axios.get("http://localhost:4002/games", {
         params: { nickname: playerName },
       });
       setMatchList(matchResponse.data);

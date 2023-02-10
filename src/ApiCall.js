@@ -63,5 +63,5 @@ app.get('/summonerInfo', async(req,res)=>{
     res.send(summonerInfo)
 })
 
-app.listen(4000, ()=> console.log('server on port 4000'))
+app.listen(4002, ()=> console.log('server on port 4002'))
  
