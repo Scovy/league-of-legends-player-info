@@ -1,3 +1,4 @@
+import { useParams } from "react-router-dom";
 import "./styles/MatchHistory.css";
 /* {match.info.participants.slice(0, 5).map((data, participantIndex)=>
                <Typography><img alt='Champion Avatar' className='championAvatar' src={'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/' + data.championName + '.png'}/> 
@@ -9,16 +10,19 @@ import "./styles/MatchHistory.css";
                {data.summonerName} - {data.championName} </Typography>
 */
 
-function MatchHistory({ matchData, playerName }) {
+function MatchHistory(element: { matchData: any[], playerName: string }) {
 
-  const matchDataArray = matchData;
+  const {playerName} = useParams();
+  console.log(playerName)
+
+  const matchDataArray = element.matchData;
 
 
   return(
     <div className="flex flex-col bg-tertiary-bg p-5 rounded-sm w-full">
         {matchDataArray.map((match)=> {
         /*participants index pointing to searched player */ 
-    const participantIndex = match.info.participants.findIndex(participant => participant.summonerName === playerName)
+    const participantIndex = match.info.participants.findIndex((participant: any) => participant.summonerName === element.playerName)
           console.log(participantIndex)
     return (
     <div className={`mt-2 p-2 place-items-center justify-between h-28 w-full flex rounded-md text-white ${match.info.participants[participantIndex].win ? 'bg-[#1E2B5E]' : 'bg-[#3E223B]'}`} >

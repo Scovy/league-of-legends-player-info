@@ -10,7 +10,7 @@ import { Route, Routes, useNavigate } from "react-router-dom";
 function App() {
   const [playerName, setPlayerName] = useState("");
   const [matchList, setMatchList] = useState([{}]);
-  const [summonerData, setSummonerData] = useState([]);
+  const [summonerData, setSummonerData] = useState({} as any);
   
 
   useEffect(() => {
@@ -34,11 +34,11 @@ function App() {
     }
   };
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     navigate(`/info/${playerName}`);
   };
-  const handlePlayerSubmit = async(player) =>{
+  const handlePlayerSubmit = async(player: string) =>{
     setPlayerName(player)
   }
   return (
@@ -106,7 +106,7 @@ function App() {
       <Route
         path='/info/:playerName'
         element={
-          <> 
+          <>
           <Navbar onSubmit={handlePlayerSubmit}/>
               <div className="container flex justify-center mx-auto mt-3">
                 {Object.keys(summonerData).length > 0 &&  (

@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-function Navbar({onSubmit}){
+function Navbar(inp: {onSubmit: any}){
   const [player, setPlayer] = useState('')
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = (event: any) => {
     event.preventDefault();
-    onSubmit(player);
+    inp.onSubmit(player);
   };
-  const handleChange = (event) =>{
+  const handleChange = (event: any) =>{
     setPlayer(event.target.value)
   }
   
