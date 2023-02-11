@@ -12,9 +12,9 @@ function Navbar({onSubmit}){
   
 
     return(
-        <nav class="fixed top-0 z-10 bg-primary-bg w-full px-4 py-3 flex justify-center shadow border-b-2 border-[#0D0D28]">
+        <nav className="fixed top-0 z-10 bg-primary-bg w-full px-4 py-3 flex justify-center shadow border-b-2 border-[#0D0D28]">
         <form onSubmit={handleFormSubmit}>
-        <input onChange={handleChange} value={player} type="text" class=" flex  rounded-sm p-2 bg-tertiary-bg focus:outline-none focus:shadow-outline text-white" placeholder="Player search"/>
+        <input onChange={handleChange} value={player} type="text" className=" flex  rounded-sm p-2 bg-tertiary-bg focus:outline-none focus:shadow-outline text-white" placeholder="Player search"/>
         </form>
       </nav>
     )

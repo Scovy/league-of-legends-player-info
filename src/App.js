@@ -36,7 +36,7 @@ function App() {
   const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
-    navigate("/info");
+    navigate(`/info/${playerName}`);
   };
   const handlePlayerSubmit = async(player) =>{
     setPlayerName(player)
@@ -104,7 +104,7 @@ function App() {
       />
 
       <Route
-        path='/info/'
+        path='/info/:playerName'
         element={
           <> 
           <Navbar onSubmit={handlePlayerSubmit}/>
