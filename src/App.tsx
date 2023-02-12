@@ -6,40 +6,18 @@ import SummonerData from "./components/SummonerData";
 import MatchHistory from "./components/MatchHistory";
 import RankedSideBar from "./components/RankedSideBar";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import Details from "./components/Details/Details";
 
 function App() {
   const [playerName, setPlayerName] = useState("");
-  const [matchList, setMatchList] = useState([{}]);
-  const [summonerData, setSummonerData] = useState({} as any);
-  
 
-  useEffect(() => {
-    playerSearch();
-  }, [playerName]);
-
-  const playerSearch = async () => {
-    try {
-      const summonerResponse = await axios.get(
-        "http://localhost:4002/summonerInfo",
-        { params: { nickname: playerName } }
-      );
-      setSummonerData(summonerResponse.data);
-
-      const matchResponse = await axios.get("http://localhost:4002/games", {
-        params: { nickname: playerName },
-      });
-      setMatchList(matchResponse.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
   const navigate = useNavigate();
   const handleSubmit = (event: any) => {
     event.preventDefault();
     navigate(`/info/${playerName}`);
   };
-  const handlePlayerSubmit = async(player: string) =>{
-    setPlayerName(player)
+  const handlePlayerSubmit = async (player: string) => {
+    navigate(`/info/${player}`);
   }
   return (
     <Routes>
@@ -107,18 +85,8 @@ function App() {
         path='/info/:playerName'
         element={
           <>
-          <Navbar onSubmit={handlePlayerSubmit}/>
-              <div className="container flex justify-center mx-auto mt-3">
-                {Object.keys(summonerData).length > 0 &&  (
-                  <SummonerData summonerInfo={summonerData.summoner} />
-                )}
-                <div className="flex flex-col sm:flex-row ">
-                {Object.keys(summonerData).length > 0 && (
-                  <RankedSideBar queueInfo={summonerData.queue} />
-                )}
-                {Object.keys(matchList).length > 0 && <MatchHistory matchData={matchList} playerName={playerName} />}
-                </div>
-              </div>
+            <Navbar onSubmit={handlePlayerSubmit} />
+            <Details></Details>
           </>
         }
       />
