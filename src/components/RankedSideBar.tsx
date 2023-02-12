@@ -2,7 +2,7 @@ import {Card} from "@mui/material"
 //import "./styles/RankedSideBar.css"
 // {queueInfo[0].tier} : {queueInfo[0].leaguePoints}
 //Wins :{queueInfo[0].wins} Losses : {queueInfo[0].losses}
-function RankedSideBar({queueInfo}){
+function RankedSideBar(el: {queueInfo: any}){
 
 
   return(

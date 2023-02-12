@@ -1,11 +1,11 @@
 import { Box } from "@mui/material";
 import "./styles/SummonerData.css";
-function SummonerData({summonerInfo}) {
+function SummonerData(element: {summonerInfo: any}) {
 
 
   const profileIcon =
     "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/" +
-    summonerInfo.profileIconId +
+    element.summonerInfo.profileIconId +
     ".png";
   return (
     <>
@@ -18,13 +18,13 @@ function SummonerData({summonerInfo}) {
             alt="Profile Icon"
           ></img>
           <h1 className="profileLevel text-white text-sm pl-0.5 pr-0.5">
-            {summonerInfo.summonerLevel}
+            {element.summonerInfo.summonerLevel}
           </h1>
         </Box>
         </div>
         <h2
           className=" text-slate-400 font-bold ">
-          {summonerInfo.name}
+          {element.summonerInfo.name}
         </h2>
 
 
