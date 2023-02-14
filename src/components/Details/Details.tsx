@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import MatchHistory from "../MatchHistory";
+import MatchHistorySkeleton from "../MatchHistorySkeleton";
 import SummonerData from "../SummonerData";
 
 function Details() {
@@ -56,8 +57,8 @@ function Details() {
 
   if (isLoading) {
     content =
-      <div className="flex content-center justify-center">
-        <p className="text-white">Ładowanie...</p>
+      <div className="flex content-center justify-center w-2/3 mx-auto">
+          <MatchHistorySkeleton/>
       </div>
 
   } else if (!isLoading && isLoaded) {
