@@ -2,17 +2,8 @@ import { useParams } from "react-router-dom";
 import MatchDetails from "./MatchDetails";
 import {useState} from 'react'
 import "./styles/MatchHistory.css";
-import { FaChevronCircleDown, FaChevronDown, FaChevronLeft } from "react-icons/fa";
+import { FaChevronDown, FaChevronLeft } from "react-icons/fa";
 
-/* {match.info.participants.slice(0, 5).map((data, participantIndex)=>
-               <Typography><img alt='Champion Avatar' className='championAvatar' src={'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/' + data.championName + '.png'}/> 
-               {data.summonerName} - {data.championName} </Typography>
-             )}
-*/
-/* {match.info.participants.slice(5).map((data, participantIndex)=>
-               <Typography><img alt='Champion Avatar' className='championAvatar' src={'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/' + data.championName + '.png'}/> 
-               {data.summonerName} - {data.championName} </Typography>
-*/
 
 function MatchHistory(element: { matchData: any[], playerName: string }) {
   const { playerName } = useParams();
@@ -28,11 +19,9 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
 }
 
   return (
-    <div className="flex flex-col bg-tertiary-bg p-5 rounded-sm w-full">
+    <div className="flex flex-col bg-tertiary-bg p-5 rounded-sm grow">
       {matchDataArray.length > 0 && matchDataArray.map((match, index) => {
         const isExpanded = expandedIndex === index
-        console.log(expandedIndex)
-
         /*participants index pointing to searched player */
         const participantIndex = match.info.participants.findIndex((participant: any) => participant.summonerName === element.playerName)
         if (participantIndex) {
@@ -53,13 +42,13 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
               </div>
 
 
-              <div className="pl-4 text-center">
+              <div className="pl-10 text-center">
                 <h1 className=" ">{match.info.participants[participantIndex].kills} /<span className="text-red-600 font-bold"> {match.info.participants[participantIndex].deaths} </span> /  {match.info.participants[participantIndex].assists}</h1>
                 <h2 className="">{Math.round((match.info.participants[participantIndex].kills + match.info.participants[participantIndex].assists) / match.info.participants[participantIndex].deaths * 100) / 100}</h2>
-                <h3>CS {match.info.participants[participantIndex].totalMinionsKilled}</h3>
+                <h3>CS {match.info.participants[participantIndex].totalMinionsKilled + match.info.participants[participantIndex].neutralMinionsKilled}</h3>
                 <h4>Vision {match.info.participants[participantIndex].visionScore}</h4>
               </div>
-              <div className="flex flex-col gap-2 p-5 m-2 ">
+              <div className="flex flex-col gap-2 pl-10 m-2 ">
                 <div className="flex gap-1">
                   <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item0}.png`}></img>
                   <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item1}.png`}></img>
@@ -73,22 +62,17 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
                 </div>
               </div>
               
-
             <span onClick={() => handleClick(index)}>{isExpanded ? <FaChevronLeft/>:<FaChevronDown/>}</span>
             </div>
            <div className="text-white">
           {isExpanded && <MatchDetails matchData={element.matchData} partIndex={participantIndex} matchIndex={index}/>}
           </div>
           </div>
-          
           )
         }
-        
-        
       }
     )
-  }
-      
+  }   
     </div>
 
     
