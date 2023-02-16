@@ -1,5 +1,9 @@
 import { useParams } from "react-router-dom";
+import MatchDetails from "./MatchDetails";
+import {useState} from 'react'
 import "./styles/MatchHistory.css";
+import { FaChevronCircleDown, FaChevronDown, FaChevronLeft } from "react-icons/fa";
+
 /* {match.info.participants.slice(0, 5).map((data, participantIndex)=>
                <Typography><img alt='Champion Avatar' className='championAvatar' src={'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/' + data.championName + '.png'}/> 
                {data.summonerName} - {data.championName} </Typography>
@@ -11,20 +15,29 @@ import "./styles/MatchHistory.css";
 */
 
 function MatchHistory(element: { matchData: any[], playerName: string }) {
-
   const { playerName } = useParams();
-  console.log(playerName)
-
+  const [expandedIndex, setExpandedIndex] = useState(-1)
   const matchDataArray = element.matchData;
 
+  const handleClick = (index: number) =>{
+    if(expandedIndex === index){
+        return setExpandedIndex(-1)
+    } else {
+        setExpandedIndex(index)
+    }
+}
 
   return (
     <div className="flex flex-col bg-tertiary-bg p-5 rounded-sm w-full">
-      {matchDataArray.length > 0 && matchDataArray.map((match) => {
+      {matchDataArray.length > 0 && matchDataArray.map((match, index) => {
+        const isExpanded = expandedIndex === index
+        console.log(expandedIndex)
+
         /*participants index pointing to searched player */
         const participantIndex = match.info.participants.findIndex((participant: any) => participant.summonerName === element.playerName)
-        if (participantIndex > -1) {
+        if (participantIndex) {
           return (
+            <div>
             <div className={`mt-2 p-2 place-items-center justify-between h-28 w-full flex rounded-md text-white ${match.info.participants[participantIndex].win ? 'bg-[#1E2B5E]' : 'bg-[#3E223B]'}`} >
               <div className="">
                 <p className="">{match.info.gameMode}</p>
@@ -59,11 +72,26 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
                   <img className="w-8 h-8" alt='sprite' src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${match.info.participants[participantIndex].item5}.png`}></img>
                 </div>
               </div>
+              
+
+            <span onClick={() => handleClick(index)}>{isExpanded ? <FaChevronLeft/>:<FaChevronDown/>}</span>
             </div>
+           <div className="text-white">
+          {isExpanded && <MatchDetails matchData={element.matchData} partIndex={participantIndex} matchIndex={index}/>}
+          </div>
+          </div>
+          
           )
         }
-      })}
+        
+        
+      }
+    )
+  }
+      
     </div>
+
+    
   )
 
 }
