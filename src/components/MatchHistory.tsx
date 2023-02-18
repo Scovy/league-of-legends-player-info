@@ -24,7 +24,7 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
         const isExpanded = expandedIndex === index
         /*participants index pointing to searched player */
         const participantIndex = match.info.participants.findIndex((participant: any) => participant.summonerName === element.playerName)
-        if (participantIndex) {
+        if (participantIndex > -1) {
           return (
             <div>
             <div className={`mt-2 p-2 place-items-center justify-between h-28 w-full flex rounded-md text-white ${match.info.participants[participantIndex].win ? 'bg-[#1E2B5E]' : 'bg-[#3E223B]'}`} >
