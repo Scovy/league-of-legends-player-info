@@ -18,6 +18,8 @@ function MatchDetails(props: {
   const enemyTeam = match[matchIndex].info.participants.filter(
     (p: any) => !playerTeam.includes(p)
   );
+  const itemPlaceholderWin = <div className="w-4 h-4 bg-item-win shrink-0"></div>
+  const itemPlaceholderLoss = <div className="w-4 h-4 bg-item-loss shrink-0"></div>
 
   console.log("PartIndex", partIndex);
   console.log("PlayerTeam", playerTeam);
@@ -27,9 +29,9 @@ function MatchDetails(props: {
     <div>
       <div className="bg-gray flex-col">
          {playerTeam[0].win ? <p>Win</p> : <p>Loss</p> }
-        <section className="team1 bg-blue-700 rounded-md">
+        <section className={`team1 ${playerTeam[0].win ? 'bg-history-card-win' : 'bg-history-card-loss'} rounded-md`}>
           {playerTeam.map((player: any) => {
-            return (<div>
+            return (<div className="p-2">
               <div className="flex">
                 <div className="flex w-1/3">
                 <img
@@ -50,7 +52,7 @@ function MatchDetails(props: {
                         <p className="text-sm">{player.summonerName}</p> 
                     </div>
                 </div>
-                <div className="flex justify-evenly t">
+                <div className="flex justify-evenly w-2/3">
                     <div>
                         <p>{player.kills} / {player.deaths} / {player.assists}</p>
                         <p>{Math.round((player.kills + player.assists) / player.deaths*100)/100}</p>
@@ -62,18 +64,18 @@ function MatchDetails(props: {
                         <p className="pl-1">{player.wardsPlaced}</p>
                     </div>
                 </div>
-                <div className="flex flex-col gap-2 items-end ">
+                <div className="flex flex-col gap-2  ">
                     <div className="flex gap-1">
-                        <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item0}.png`}/>
-                        <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item1}.png`}/>
-                        <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item3}.png`}/>
-                        <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item6}.png`}/>
-
+                    {[player.item0, player.item1, player.item2,  player.item6].map((item) => (           
+                      item === 0 ? (player.win ? itemPlaceholderWin : itemPlaceholderLoss)  :
+                        <img className="w-4 h-4" alt="Item" key={item} src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${item}.png`} />
+                      ))}
                     </div>
                     <div className="flex gap-1">
-                    <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item4}.png`}/>
-                    <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item5}.png`}/>
-                    <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item6}.png`}/>
+                    {[player.item3, player.item4, player.item5].map((item) => (  
+                      item === 0 ? (player.win ? itemPlaceholderWin : itemPlaceholderLoss)  :
+                        <img className="w-4 h-4" alt="Item" key={item} src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${item}.png`} />
+                      ))}
                     </div>
                 </div>
               </div>
@@ -83,58 +85,58 @@ function MatchDetails(props: {
         </section>
         {enemyTeam[0].win ? <p>Win</p> : <p>Loss</p> }
 
-        <section className="team1 bg-red-700 rounded-md mt-2">
+        <section className={`team1 ${enemyTeam[0].win ? 'bg-history-card-win' : 'bg-history-card-loss'} rounded-md`}>
           {enemyTeam.map((player: any) => {
-            return (<div>
-              <div className="flex">
-                <div className="flex w-1/3">
-                <img
-                  className="h-8 w-8 rounded-md"
-                  src={
-                    "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/" +
-                    player.championName +
-                    ".png"
-                  }
-                  alt="Img"
-                />
-                    <div>
-                        <div className="h-4 w-4 bg-red-600"></div>
-                        <div className="h-4 w-4 bg-yellow-600"></div>
-                    </div>
-                
-                    <div>
-                        <p className="text-sm">{player.summonerName}</p> 
-                    </div>
-                </div>
-                <div className="flex justify-evenly t">
-                    <div>
-                        <p>{player.kills} / {player.deaths} / {player.assists}</p>
-                        <p>{Math.round((player.kills + player.assists) / player.deaths*100)/100}</p>
-                    </div>
-                    <div className="pl-2 flex text-sm">
-                        <p className="pl-1">{player.totalDamageDealtToChampions}</p>
-                        <p className="pl-1">{(player.goldEarned / 1000).toFixed(1)}K</p>
-                        <p className="pl-1">{player.totalMinionsKilled + player.neutralMinionsKilled}</p>
-                        <p className="pl-1">{player.wardsPlaced}</p>
-                    </div>
-                </div>
-                <div className="flex flex-col gap-2 items-end ">
-                    <div className="flex gap-1">
-                        <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item0}.png`}/>
-                        <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item1}.png`}/>
-                        <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item3}.png`}/>
-                        <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item6}.png`}/>
-
-                    </div>
-                    <div className="flex gap-1">
-                    <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item4}.png`}/>
-                    <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item5}.png`}/>
-                    <img className="w-4 h-4" alt="sprite" src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${player.item6}.png`}/>
-                    </div>
-                </div>
+            return (<div className="p-2">
+            <div className="flex">
+              <div className="flex w-1/3">
+              <img
+                className="h-8 w-8 rounded-md"
+                src={
+                  "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/" +
+                  player.championName +
+                  ".png"
+                }
+                alt="Img"
+              />
+                  <div>
+                      <div className="h-4 w-4 bg-red-600"></div>
+                      <div className="h-4 w-4 bg-yellow-600"></div>
+                  </div>
+              
+                  <div>
+                      <p className="text-sm">{player.summonerName}</p> 
+                  </div>
               </div>
+              <div className="flex justify-evenly w-2/3">
+                  <div>
+                      <p>{player.kills} / {player.deaths} / {player.assists}</p>
+                      <p>{Math.round((player.kills + player.assists) / player.deaths*100)/100}</p>
+                  </div>
+                  <div className="pl-2 flex text-sm">
+                      <p className="pl-1">{player.totalDamageDealtToChampions}</p>
+                      <p className="pl-1">{(player.goldEarned / 1000).toFixed(1)}K</p>
+                      <p className="pl-1">{player.totalMinionsKilled + player.neutralMinionsKilled}</p>
+                      <p className="pl-1">{player.wardsPlaced}</p>
+                  </div>
               </div>
-            );
+              <div className="flex flex-col gap-2  ">
+                    <div className="flex gap-1">
+                    {[player.item0, player.item1, player.item2,  player.item6].map((item) => (           
+                      item === 0 ? (player.win ? itemPlaceholderWin : itemPlaceholderLoss)  :
+                        <img className="w-4 h-4" alt="Item" key={item} src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${item}.png`} />
+                      ))}
+                    </div>
+                    <div className="flex gap-1">
+                    {[player.item3, player.item4, player.item5].map((item) => (  
+                      item === 0 ? (player.win ? itemPlaceholderWin : itemPlaceholderLoss)  :
+                        <img className="w-4 h-4" alt="Item" key={item} src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${item}.png`} />
+                      ))}
+                    </div>
+                </div>
+            </div>
+            </div>
+          );
           })}
         </section>
       </div>
