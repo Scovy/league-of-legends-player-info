@@ -7,6 +7,7 @@ import MatchHistory from "./components/MatchHistory";
 import RankedSideBar from "./components/RankedSideBar";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Details from "./components/Details/Details";
+import ChampionList from "./components/ChampionList";
 
 function App() {
   const [playerName, setPlayerName] = useState("");
@@ -89,6 +90,16 @@ function App() {
             <Details></Details>
           </>
         }
+      />
+      <Route
+      path='/champions'
+      element= {
+        <>
+        <Navbar onSubmit={handlePlayerSubmit}/>
+        <ChampionList/>
+        </>
+    
+    }
       />
     </Routes>
   );
