@@ -1,8 +1,9 @@
 import axios from "axios"
-import { Suspense, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import ChampionLore from "./ChampionLore"
 import ChampionSkills from "./ChampionSkills"
+import ChampionSkins from "./ChampionSkins"
 
 interface Champion {
   data?: any
@@ -26,6 +27,7 @@ function IndividualChampion(){
           }
         }
         fetchData();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
       }, []);
 
       const handleClick = (tab:string) =>{
@@ -43,24 +45,26 @@ function IndividualChampion(){
       
     return (
         <>
-        <div className="text-white h-screen w-2/3 mx-auto pt-20 bg-primary-bg">
-            <div className="flex">
-            <img className=" object-cover" alt='Champion splashart' src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${currentChampion.id}_0.jpg`}/>
+        <div className="text-white bg-primary-bg mx-auto min-h-screen md:w-2/3 l:w-2/5 ">
+            <div className="flex flex-col md:flex-row">
+            <img className="w-full absolute opacity-20 md:static md:opacity-100 md:w-auto" alt='Champion splashart' src={`https://ddragon.leagueoflegends.com/cdn/img/champion/loading/${currentChampion.id}_0.jpg`}/>
             
-                <div className="flex-col mt-20 pl-5">
-                
-                <h1 className="text-white font-bold text-4xl">{currentChampion.name}</h1>
-                <h1 className="text-slate-300">{currentChampion.title}</h1>
+                <div className="z-2 relative p-7">
+                <div>
+                  <h1 className="text-red font-bold text-4xl">{currentChampion.name}</h1>
+                  <h1 className="text-slate-300">{currentChampion.title}</h1>
+                </div>
                 <div>
                     <ul className="flex gap-5">
                         <li onClick={()=> handleClick('lore')}>Lore</li>
                         <li onClick={()=> handleClick('skills')}>Skills</li>
-                        <li onClick={()=> handleClick('Skins')}>Skins</li>
+                        <li onClick={()=> handleClick('skins')}>Skins</li>
                     </ul>
                 </div>
                 <div className="pt-20">
                 {selectedTab === 'lore' && <ChampionLore lore={currentChampion.lore}/>}
                 {selectedTab === 'skills'&& <ChampionSkills skillsList={currentChampion.spells}/>}
+                {selectedTab === 'skins' && <ChampionSkins skinList={currentChampion.skins} championName={name}/>}
                 </div>
                 </div>
             </div>

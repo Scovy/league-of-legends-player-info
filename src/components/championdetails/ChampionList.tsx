@@ -25,8 +25,8 @@ const [championList, setChampionList] = useState({} as any)
 
     return (
         <div className='bg-primary-bg'>
-        <div className='w-2/3 mx-auto bg-secondary-bg '>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6  text-white pt-12">
+        <div className='w-full mx-auto bg-secondary-bg md:w-2/3'>
+            <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 text-white gap-2 p-2">
             {transformedData.map((champion : any)=>(
                 <div onClick={() => handleClick(champion.id)} className='flex flex-col items-center'>
                 <img className="w-20 h-20" alt='champion' src={`https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/champion-icons/${champion.key}.png`} />
