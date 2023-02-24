@@ -1,13 +1,11 @@
 import "./App.css";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Navbar from "./components/Navbar";
-import SummonerData from "./components/SummonerData";
-import MatchHistory from "./components/MatchHistory";
-import RankedSideBar from "./components/RankedSideBar";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import Details from "./components/Details/Details";
-import ChampionList from "./components/ChampionList";
+import ChampionList from "./components/championdetails/ChampionList";
+import IndividualChampion from "./components/championdetails/IndividualChampion";
+
 
 function App() {
   const [playerName, setPlayerName] = useState("");
@@ -92,14 +90,22 @@ function App() {
         }
       />
       <Route
-      path='/champions'
+      path='/champions/'
       element= {
         <>
         <Navbar onSubmit={handlePlayerSubmit}/>
         <ChampionList/>
+        </> 
+        }
+      />
+      <Route
+      path="/champions/:championName"
+      element={
+        <>
+        <Navbar onSubmit={handlePlayerSubmit}/>
+        <IndividualChampion/>
         </>
-    
-    }
+      }
       />
     </Routes>
   );
