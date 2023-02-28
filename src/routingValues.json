@@ -1,0 +1,62 @@
+{
+    "eun1":{
+        "PLATFORM_ROUTE": "eun1.api.riotgames.com",
+        "REGIONAL_ROUTE": "europe.api.riotgames.com"
+    },
+    "euw":{
+        "PLATFORM_ROUTE": "euw1.api.riotgames.com",
+        "REGIONAL_ROUTE": "europe.api.riotgames.com"
+    },
+    "br":{
+        "PLATFORM_ROUTE": "br1.api.riotgames.com",
+        "REGIONAL_ROUTE": "asia.api.riotgames.com"
+    },
+    "jp":{
+        "PLATFORM_ROUTE": "jp1.api.riotgames.com",
+        "REGIONAL_ROUTE": "asia.api.riotgames.com"
+    },
+    "la1":{
+        "PLATFORM_ROUTE": "la1.api.riotgames.com",
+        "REGIONAL_ROUTE": "americas.api.riotgames.com"
+    },
+    "la2":{
+        "PLATFORM_ROUTE": "la2.api.riotgames.com",
+        "REGIONAL_ROUTE": "americas.api.riotgames.com"
+    },
+    "na":{
+        "PLATFORM_ROUTE": "na1.api.riotgames.com",
+        "REGIONAL_ROUTE": "americas.api.riotgames.com"
+    },
+    "oc":{
+        "PLATFORM_ROUTE": "oc1.api.riotgames.com",
+        "REGIONAL_ROUTE": "sea.api.riotgames.com"
+    },
+    "tr1":{
+        "PLATFORM_ROUTE": "tr1.api.riotgames.com",
+        "REGIONAL_ROUTE": "europe.api.riotgames.com"
+    },
+    "ru":{
+        "PLATFORM_ROUTE": "ru.api.riotgames.com",
+        "REGIONAL_ROUTE": "europe.api.riotgames.com"
+    },
+    "ph2":{
+        "PLATFORM_ROUTE": "ph2.api.riotgames.com",
+        "REGIONAL_ROUTE": "asia.api.riotgames.com"
+    },
+    "sg2":{
+        "PLATFORM_ROUTE": "sg2.api.riotgames.com",
+        "REGIONAL_ROUTE": "asia.api.riotgames.com"
+    },
+    "th2":{
+        "PLATFORM_ROUTE": "th2.api.riotgames.com",
+        "REGIONAL_ROUTE": "asia.api.riotgames.com"
+    },
+    "tw2":{
+        "PLATFORM_ROUTE": "tw2.api.riotgames.com",
+        "REGIONAL_ROUTE": "asia.api.riotgames.com"
+    },
+    "vn2":{
+        "PLATFORM_ROUTE": "vn2.api.riotgames.com",
+        "REGIONAL_ROUTE": "asia.api.riotgames.com"
+    }
+}
