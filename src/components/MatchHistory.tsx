@@ -30,6 +30,7 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
     <div className="flex flex-col bg-tertiary-bg p-5 rounded-sm grow">
       {matchDataArray.length > 0 && matchDataArray.map((match, index) => {
         const isExpanded = expandedIndex === index
+        console.log(match)
         /*participants index pointing to searched player */
         const participantIndex = match.info.participants.findIndex((participant: any) => participant.summonerName === element.playerName)
         const currentPlayer = match.info.participants[participantIndex]

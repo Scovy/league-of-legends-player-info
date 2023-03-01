@@ -5,15 +5,18 @@ import { useParams } from "react-router-dom";
 import MatchHistory from "../MatchHistory";
 import MatchHistorySkeleton from "../MatchHistorySkeleton";
 import SummonerData from "../SummonerData";
+interface Region{
+  region:any
+}
 
-function Details() {
+function Details(props: Region) {
   const [matchList, setMatchList] = useState([]);
   const [summonerData, setSummonerData] = useState({} as any);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
 
   const { playerName } = useParams();
-
+  console.log(props.region)
   const [loadedUser, setLoadedUser] = useState(playerName);
 
 
@@ -25,11 +28,11 @@ function Details() {
         Promise.all(
           [
             axios.get(
-              "http://localhost:4002/summonerInfo",
-              { params: { nickname: playerName } }
+              "http://localhost:4003/summonerInfo",
+              { params: { nickname: playerName, region : props.region } }
             ),
-            axios.get("http://localhost:4002/games", {
-              params: { nickname: playerName },
+            axios.get("http://localhost:4003/games", {
+              params: { nickname: playerName, region : props.region },
             })
           ]
         )
@@ -91,7 +94,7 @@ function Details() {
     </div>
   }
 
-  return (<div className="min-h-screen pt-20">{content}</div>);
+  return (<div className="min-h-screen">{content}</div>);
 
 }
 
