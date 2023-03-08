@@ -9,7 +9,7 @@
     },
     "br":{
         "PLATFORM_ROUTE": "br1.api.riotgames.com",
-        "REGIONAL_ROUTE": "asia.api.riotgames.com"
+        "REGIONAL_ROUTE": "americas.api.riotgames.com"
     },
     "jp":{
         "PLATFORM_ROUTE": "jp1.api.riotgames.com",
@@ -34,6 +34,10 @@
     "tr1":{
         "PLATFORM_ROUTE": "tr1.api.riotgames.com",
         "REGIONAL_ROUTE": "europe.api.riotgames.com"
+    },
+    "kr":{
+        "PLATFORM_ROUTE": "kr.api.riotgames.com",
+        "REGIONAL_ROUTE": "asia.api.riotgames.com"
     },
     "ru":{
         "PLATFORM_ROUTE": "ru.api.riotgames.com",

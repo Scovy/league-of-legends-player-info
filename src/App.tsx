@@ -20,10 +20,12 @@ function App() {
   const navigate = useNavigate();
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    navigate(`/info/${playerName}`);
+    sessionStorage.setItem("regionStorage", region)
+    navigate(`/info/${region}/${playerName}`);
+
   };
   const handlePlayerSubmit = async (player: string) => {
-    navigate(`/info/${player}`);
+    navigate(`/info/${region}/${player}`);
   };
   const handleChange = (e: any) => {
     setRegion(e.target.value);
@@ -70,6 +72,7 @@ function App() {
                     
                   </FormControl>
                   <TextField
+                      variant="filled"
                       sx={{ input: { color: 'white' } }}
                       id="outlined-controlled"
                       label="Playername"
@@ -112,11 +115,11 @@ function App() {
       />
 
       <Route
-        path="/info/:playerName"
+        path="/info/:region/:playerName"
         element={
           <>
             <Navbar onSubmit={handlePlayerSubmit} />
-            <Details region={region}></Details>
+            <Details ></Details>
           </>
         }
       />

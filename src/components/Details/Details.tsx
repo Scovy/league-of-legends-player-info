@@ -5,21 +5,20 @@ import { useParams } from "react-router-dom";
 import MatchHistory from "../MatchHistory";
 import MatchHistorySkeleton from "../MatchHistorySkeleton";
 import SummonerData from "../SummonerData";
-interface Region{
-  region:any
-}
 
-function Details(props: Region) {
+function Details() {
   const [matchList, setMatchList] = useState([]);
   const [summonerData, setSummonerData] = useState({} as any);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const { playerName } = useParams();
-  console.log(props.region)
+  const { playerName, region } = useParams();
+  console.log('params',region)
   const [loadedUser, setLoadedUser] = useState(playerName);
 
 
+ 
+  console.log('Storage',sessionStorage.getItem('regionStorage'))
   useEffect(() => {
     const loadData = async () => {
       if (isLoaded && loadedUser === playerName) return;
@@ -29,10 +28,10 @@ function Details(props: Region) {
           [
             axios.get(
               "http://localhost:4003/summonerInfo",
-              { params: { nickname: playerName, region : props.region } }
+              { params: { nickname: playerName, region : region } }
             ),
             axios.get("http://localhost:4003/games", {
-              params: { nickname: playerName, region : props.region },
+              params: { nickname: playerName, region : region },
             })
           ]
         )
@@ -66,7 +65,7 @@ function Details(props: Region) {
 
   } else if (!isLoading && isLoaded) {
     content =
-      <div className="flex flex-row justify-center mx-auto mt-3 gap-x-6">
+      <div className="flex flex-col md:flex-row justify-center mx-auto mt-3 gap-x-6">
         <div>
           {Object.keys(summonerData).length > 0 && (
             <SummonerData summonerInfo={summonerData.summoner} />
