@@ -9,7 +9,6 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
   
   const [expandedIndex, setExpandedIndex] = useState(-1)
   const matchDataArray = element.matchData;
-
   const itemPlaceholderWin = <div className="w-8 h-8 bg-item-win shrink-0"></div>
   const itemPlaceholderLoss = <div className="w-8 h-8 bg-item-loss shrink-0"></div>
 
@@ -33,7 +32,6 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
         /*participants index pointing to searched player */
         const participantIndex = match.info.participants.findIndex((participant: any) => participant.summonerName === element.playerName)
         const currentPlayer = match.info.participants[participantIndex]
-
         if (participantIndex > -1) {
           return (
             <div>
@@ -43,7 +41,8 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
                 <p className="text-justify">{currentPlayer.win ? <p className="font-bold text-blue-700">Win</p> : <p className="font-bold text-red-600">Loss</p>}</p>
               </div>
               <div className="flex">
-                <img className="h-14 w-14" src={championAvatarCDNUrl + currentPlayer.championName + '.png'} alt="Img" />
+                <img className="h-14 w-14" src={championAvatarCDNUrl + (currentPlayer.championName === 'FiddleSticks' ? 'Fiddlesticks' : currentPlayer.championName) + '.png'} alt="Img" />
+                
                 {/*Placeholders for summoner spells and runes */}
                 <div>
                   <div className="h-7 w-7 bg-red-600"></div>

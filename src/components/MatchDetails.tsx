@@ -5,7 +5,6 @@ function MatchDetails(props: {
 }) {
   const match = props.matchData;
   const matchIndex = props.matchIndex;
-  const partIndex = props.partIndex;
   let team1;
   let team2;
 
@@ -20,10 +19,8 @@ function MatchDetails(props: {
   );
   const itemPlaceholderWin = <div className="w-4 h-4 bg-item-win shrink-0"></div>
   const itemPlaceholderLoss = <div className="w-4 h-4 bg-item-loss shrink-0"></div>
-
-  console.log("PartIndex", partIndex);
-  console.log("PlayerTeam", playerTeam);
-  console.log("enemyTeam", enemyTeam);
+  const itemCDNUrl = 'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/'
+  const championAvatarCDNUrl = 'https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/'
 
   return (
     <div>
@@ -37,8 +34,8 @@ function MatchDetails(props: {
                 <img
                   className="h-8 w-8 rounded-md"
                   src={
-                    "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/" +
-                    player.championName +
+                    championAvatarCDNUrl +
+                    (player.championName === 'FiddleSticks' ? 'Fiddlesticks' : player.championName) +
                     ".png"
                   }
                   alt="Img"
@@ -68,13 +65,13 @@ function MatchDetails(props: {
                     <div className="flex gap-1">
                     {[player.item0, player.item1, player.item2,  player.item6].map((item) => (           
                       item === 0 ? (player.win ? itemPlaceholderWin : itemPlaceholderLoss)  :
-                        <img className="w-4 h-4" alt="Item" key={item} src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${item}.png`} />
+                        <img className="w-4 h-4" alt="Item" key={item} src={itemCDNUrl + item + '.png'} />
                       ))}
                     </div>
                     <div className="flex gap-1">
                     {[player.item3, player.item4, player.item5].map((item) => (  
                       item === 0 ? (player.win ? itemPlaceholderWin : itemPlaceholderLoss)  :
-                        <img className="w-4 h-4" alt="Item" key={item} src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${item}.png`} />
+                        <img className="w-4 h-4" alt="Item" key={item} src={itemCDNUrl + item + '.png'} />
                       ))}
                     </div>
                 </div>
@@ -93,8 +90,8 @@ function MatchDetails(props: {
               <img
                 className="h-8 w-8 rounded-md"
                 src={
-                  "https://ddragon.leagueoflegends.com/cdn/13.1.1/img/champion/" +
-                  player.championName +
+                  championAvatarCDNUrl +
+                  (player.championName === 'FiddleSticks' ? 'Fiddlesticks' : player.championName) +
                   ".png"
                 }
                 alt="Img"
@@ -124,13 +121,13 @@ function MatchDetails(props: {
                     <div className="flex gap-1">
                     {[player.item0, player.item1, player.item2,  player.item6].map((item) => (           
                       item === 0 ? (player.win ? itemPlaceholderWin : itemPlaceholderLoss)  :
-                        <img className="w-4 h-4" alt="Item" key={item} src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${item}.png`} />
+                        <img className="w-4 h-4" alt="Item" key={item} src={itemCDNUrl + item + '.png'} />
                       ))}
                     </div>
                     <div className="flex gap-1">
                     {[player.item3, player.item4, player.item5].map((item) => (  
                       item === 0 ? (player.win ? itemPlaceholderWin : itemPlaceholderLoss)  :
-                        <img className="w-4 h-4" alt="Item" key={item} src={`https://ddragon.leagueoflegends.com/cdn/13.1.1/img/item/${item}.png`} />
+                        <img className="w-4 h-4" alt="Item" key={item} src={itemCDNUrl + item + '.png'} />
                       ))}
                     </div>
                 </div>

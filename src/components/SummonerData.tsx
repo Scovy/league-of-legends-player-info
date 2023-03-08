@@ -4,7 +4,7 @@ function SummonerData(element: {summonerInfo: any}) {
 
 
   const profileIcon =
-    "https://ddragon.leagueoflegends.com/cdn/12.12.1/img/profileicon/" +
+    "https://ddragon.leagueoflegends.com/cdn/13.4.1/img/profileicon/" +
     element.summonerInfo.profileIconId +
     ".png";
   return (

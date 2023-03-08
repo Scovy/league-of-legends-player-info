@@ -12,11 +12,13 @@ function Details() {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const { playerName } = useParams();
-
+  const { playerName, region } = useParams();
+  console.log('params',region)
   const [loadedUser, setLoadedUser] = useState(playerName);
 
 
+ 
+  console.log('Storage',sessionStorage.getItem('regionStorage'))
   useEffect(() => {
     const loadData = async () => {
       if (isLoaded && loadedUser === playerName) return;
@@ -25,11 +27,11 @@ function Details() {
         Promise.all(
           [
             axios.get(
-              "http://localhost:4002/summonerInfo",
-              { params: { nickname: playerName } }
+              "http://localhost:4003/summonerInfo",
+              { params: { nickname: playerName, region : region } }
             ),
-            axios.get("http://localhost:4002/games", {
-              params: { nickname: playerName },
+            axios.get("http://localhost:4003/games", {
+              params: { nickname: playerName, region : region },
             })
           ]
         )
@@ -63,7 +65,7 @@ function Details() {
 
   } else if (!isLoading && isLoaded) {
     content =
-      <div className="flex flex-row justify-center mx-auto mt-3 gap-x-6">
+      <div className="flex flex-col md:flex-row justify-center mx-auto mt-3 gap-x-6">
         <div>
           {Object.keys(summonerData).length > 0 && (
             <SummonerData summonerInfo={summonerData.summoner} />
@@ -91,7 +93,7 @@ function Details() {
     </div>
   }
 
-  return (<div className="min-h-screen pt-20">{content}</div>);
+  return (<div className="min-h-screen">{content}</div>);
 
 }
 
