@@ -24,7 +24,7 @@ app.get('/games', async (req,res) =>{
     const region = req.query.region
     const PUUID = await getPUUID(playerName, route[region].PLATFORM_ROUTE)
     const API_CALL = "https://"+ route[region].REGIONAL_ROUTE + "/lol/match/v5/matches/by-puuid/" + PUUID + '/ids' + '?api_key=' + API_KEY
-
+    console.log(region)
     const gameIDs = await axios.get(API_CALL)
         .then(response => response.data)
         .catch(err=>err)

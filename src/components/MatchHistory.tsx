@@ -9,7 +9,6 @@ function MatchHistory(element: { matchData: any[], playerName: string }) {
   
   const [expandedIndex, setExpandedIndex] = useState(-1)
   const matchDataArray = element.matchData;
-
   const itemPlaceholderWin = <div className="w-8 h-8 bg-item-win shrink-0"></div>
   const itemPlaceholderLoss = <div className="w-8 h-8 bg-item-loss shrink-0"></div>
 
